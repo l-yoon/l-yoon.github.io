@@ -2,11 +2,21 @@
 interface Props { email: string; links: { label: string; url: string }[]; }
 const { email, links } = Astro.props;
 ---
-<footer class="mt-12 border-t border-[var(--color-line)] pt-8 text-sm">
-  <a href={`mailto:${email}`} class="text-[var(--color-accent)]">{email}</a>
+<div class="mt-6">
+  <a
+    href={`mailto:${email}`}
+    class="group inline-flex items-baseline gap-2 text-2xl font-semibold tracking-tight transition-colors hover:text-accent sm:text-3xl"
+  >
+    {email}
+    <span class="font-mono text-base text-accent transition-transform group-hover:translate-x-1">→</span>
+  </a>
   {links.length > 0 && (
-    <ul class="mt-2 flex gap-4">
-      {links.map((l) => <li><a href={l.url} class="text-[var(--color-muted)] hover:text-[var(--color-accent)]">{l.label}</a></li>)}
+    <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+      {links.map((l) => (
+        <li>
+          <a href={l.url} class="font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-accent">{l.label}</a>
+        </li>
+      ))}
     </ul>
   )}
-</footer>
+</div>

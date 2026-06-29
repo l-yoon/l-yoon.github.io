@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 import Hero from '../components/Hero.astro';
 import MetricStrip from '../components/MetricStrip.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import FeaturedProject from '../components/FeaturedProject.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import About from '../components/About.astro';
@@ -14,24 +15,30 @@ const featured = all.filter((p) => p.data.featured).sort((a, b) => a.data.order 
 const others = all.filter((p) => !p.data.featured).sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout title={`${site.name} — PM Portfolio`}>
+  <div class="rise flex items-center justify-between font-mono text-xs uppercase tracking-[0.2em] text-faint">
+    <span>Portfolio</span>
+    <span>2026</span>
+  </div>
+
   <Hero name={site.name} tagline={site.tagline} email={site.contact.email} pdf="/yoon-chanmin-portfolio.pdf" />
   <MetricStrip headline={site.headline} competencies={site.competencies} />
 
-  <section class="mt-12">
-    <h2 class="text-2xl font-bold">주요 프로젝트</h2>
-    {featured.map((p) => (
-      <FeaturedProject
-        name={p.data.name} role={p.data.role} period={p.data.period}
-        summary={p.data.summary} stack={p.data.stack}
-        href={`/projects/${p.id}/`} thumbnail={p.data.thumbnail}
-      />
-    ))}
+  <section class="rise mt-20" style="animation-delay:0.16s">
+    <SectionHeader num="01" title="주요 프로젝트" />
+    <div class="mt-2">
+      {featured.map((p) => (
+        <FeaturedProject
+          name={p.data.name} role={p.data.role} period={p.data.period}
+          summary={p.data.summary} stack={p.data.stack} href={`/projects/${p.id}/`}
+        />
+      ))}
+    </div>
   </section>
 
   {others.length > 0 && (
-    <section class="mt-12">
-      <h2 class="text-2xl font-bold">그 외 프로젝트</h2>
-      <div class="mt-4 grid gap-4 sm:grid-cols-2">
+    <section class="mt-16">
+      <SectionHeader num="02" title="그 외 프로젝트" />
+      <div class="mt-2">
         {others.map((p) => (
           <ProjectCard name={p.data.name} domain={p.data.domain} role={p.data.role} summary={p.data.summary} />
         ))}
@@ -39,6 +46,18 @@ const others = all.filter((p) => !p.data.featured).sort((a, b) => a.data.order -
     </section>
   )}
 
-  <About about={site.about} timeline={site.timeline} />
-  <Contact email={site.contact.email} links={site.contact.links} />
+  <section class="mt-16">
+    <SectionHeader num="03" title="소개" />
+    <About about={site.about} timeline={site.timeline} />
+  </section>
+
+  <section class="mt-16">
+    <SectionHeader num="04" title="연락처" />
+    <Contact email={site.contact.email} links={site.contact.links} />
+  </section>
+
+  <footer class="mt-20 flex items-center justify-between border-t border-line pt-6 font-mono text-xs text-faint">
+    <span>© 2026 {site.name}</span>
+    <span>디비컨설팅팀</span>
+  </footer>
 </BaseLayout>

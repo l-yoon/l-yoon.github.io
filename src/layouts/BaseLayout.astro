@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 interface Props { title: string; description?: string; }
-const { title, description = '웹/앱 프로젝트를 오프쇼어 개발팀과 함께 끝까지 책임지는 PM' } = Astro.props;
+const { title, description = '웹/앱 프로젝트를 오프쇼어 개발팀과 함께 책임지는 1년차 PM, 윤찬민의 포트폴리오' } = Astro.props;
 ---
 <!doctype html>
 <html lang="ko">
@@ -9,9 +9,14 @@ const { title, description = '웹/앱 프로젝트를 오프쇼어 개발팀과 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
     <title>{title}</title>
   </head>
-  <body class="mx-auto max-w-3xl px-6 py-12 leading-relaxed">
-    <slot />
+  <body class="min-h-screen antialiased">
+    <main class="mx-auto max-w-[44rem] px-6 py-16 sm:px-8 sm:py-24">
+      <slot />
+    </main>
   </body>
 </html>

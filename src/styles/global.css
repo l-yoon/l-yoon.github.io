@@ -1,34 +1,69 @@
-/* Pretendard — Korean web standard, self-hosted (no CDN dependency).
-   Must precede the Tailwind import: CSS requires all @import rules at the top. */
+/* Fonts — all self-hosted (no CDN, so PDF generation never blocks on network). */
 @import "pretendard/dist/web/variable/pretendardvariable.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Neutral light palette */
-  --color-ink: #1a1d1c;       /* near-black text */
-  --color-muted: #5c6360;     /* secondary text */
-  --color-line: #e3e6e4;      /* borders/dividers */
-  --color-surface: #fafbfb;   /* near-white background */
-
-  /* Muted teal accent */
-  --color-accent: #2f8a7e;
-  --color-accent-soft: #e6f1ef;
+  /* Warm-paper editorial palette */
+  --color-paper: #f6f4ee;       /* background */
+  --color-ink: #1a1813;         /* primary text */
+  --color-muted: #6b665b;       /* secondary text */
+  --color-faint: #9a9484;       /* labels / metadata */
+  --color-line: #e3ddcf;        /* hairlines */
+  --color-accent: #1f7a6e;      /* muted teal */
+  --color-accent-soft: #e8efe9; /* teal tint */
 }
 
 html {
-  background: var(--color-surface);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
 }
 
+/* Subtle atmosphere — a faint lift toward the top of the page. */
+body {
+  background-image: radial-gradient(110% 55% at 50% -8%, rgba(255, 255, 255, 0.7) 0%, transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+::selection { background: var(--color-accent); color: var(--color-paper); }
+
+/* Mono uppercase label ("kicker"). */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+/* Staggered page-load reveal. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Print / PDF — clean A4, no decoration. */
 @media print {
   @page { size: A4; margin: 18mm 16mm; }
-  html { background: #fff; }
+  html, body { background: #fff !important; background-image: none !important; }
   a { color: inherit; text-decoration: none; }
+  .no-print { display: none !important; }
   .project-block { break-before: page; break-inside: avoid; }
   .project-block:first-of-type { break-before: avoid; }
-  h2, h3 { break-after: avoid; }
+  h1, h2, h3 { break-after: avoid; }
 }
