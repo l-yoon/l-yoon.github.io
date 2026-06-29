@@ -1,0 +1,12 @@
+---
+interface Props { email: string; links: { label: string; url: string }[]; }
+const { email, links } = Astro.props;
+---
+<footer class="mt-12 border-t border-[var(--color-line)] pt-8 text-sm">
+  <a href={`mailto:${email}`} class="text-[var(--color-accent)]">{email}</a>
+  {links.length > 0 && (
+    <ul class="mt-2 flex gap-4">
+      {links.map((l) => <li><a href={l.url} class="text-[var(--color-muted)] hover:text-[var(--color-accent)]">{l.label}</a></li>)}
+    </ul>
+  )}
+</footer>

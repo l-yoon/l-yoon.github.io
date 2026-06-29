@@ -1,0 +1,34 @@
+/* Pretendard — Korean web standard, self-hosted (no CDN dependency).
+   Must precede the Tailwind import: CSS requires all @import rules at the top. */
+@import "pretendard/dist/web/variable/pretendardvariable.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* Neutral light palette */
+  --color-ink: #1a1d1c;       /* near-black text */
+  --color-muted: #5c6360;     /* secondary text */
+  --color-line: #e3e6e4;      /* borders/dividers */
+  --color-surface: #fafbfb;   /* near-white background */
+
+  /* Muted teal accent */
+  --color-accent: #2f8a7e;
+  --color-accent-soft: #e6f1ef;
+}
+
+html {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+@media print {
+  @page { size: A4; margin: 18mm 16mm; }
+  html { background: #fff; }
+  a { color: inherit; text-decoration: none; }
+  .project-block { break-before: page; break-inside: avoid; }
+  .project-block:first-of-type { break-before: avoid; }
+  h2, h3 { break-after: avoid; }
+}

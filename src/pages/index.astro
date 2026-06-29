@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import Hero from '../components/Hero.astro';
+import MetricStrip from '../components/MetricStrip.astro';
+import FeaturedProject from '../components/FeaturedProject.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+
+const all = await getCollection('projects');
+const featured = all.filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order);
+const others = all.filter((p) => !p.data.featured).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={`${site.name} — PM Portfolio`}>
+  <Hero name={site.name} tagline={site.tagline} email={site.contact.email} pdf="/yoon-chanmin-portfolio.pdf" />
+  <MetricStrip headline={site.headline} competencies={site.competencies} />
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold">주요 프로젝트</h2>
+    {featured.map((p) => (
+      <FeaturedProject
+        name={p.data.name} role={p.data.role} period={p.data.period}
+        summary={p.data.summary} stack={p.data.stack}
+        href={`/projects/${p.id}/`} thumbnail={p.data.thumbnail}
+      />
+    ))}
+  </section>
+
+  {others.length > 0 && (
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold">그 외 프로젝트</h2>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2">
+        {others.map((p) => (
+          <ProjectCard name={p.data.name} domain={p.data.domain} role={p.data.role} summary={p.data.summary} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <About about={site.about} timeline={site.timeline} />
+  <Contact email={site.contact.email} links={site.contact.links} />
+</BaseLayout>

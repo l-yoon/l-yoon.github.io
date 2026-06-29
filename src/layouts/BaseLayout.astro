@@ -1,0 +1,17 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description?: string; }
+const { title, description = '웹/앱 프로젝트를 오프쇼어 개발팀과 함께 끝까지 책임지는 PM' } = Astro.props;
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="mx-auto max-w-3xl px-6 py-12 leading-relaxed">
+    <slot />
+  </body>
+</html>

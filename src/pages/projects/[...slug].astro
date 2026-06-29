@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', (p) => p.data.featured);
+  return projects.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<BaseLayout title={`${d.name} — Min Yoon`}>
+  <a href="/" class="text-sm text-[var(--color-accent)]">← 포트폴리오</a>
+  <header class="mt-4 border-b border-[var(--color-line)] pb-6">
+    <h1 class="text-3xl font-bold">{d.name}</h1>
+    <p class="mt-2 text-[var(--color-muted)]">{d.role} · {d.period} · {d.team}</p>
+    <ul class="mt-3 flex flex-wrap gap-2">
+      {d.stack.map((s) => <li class="text-xs border border-[var(--color-line)] rounded px-2 py-0.5">{s}</li>)}
+    </ul>
+    {d.metrics.length > 0 && (
+      <dl class="mt-4 flex flex-wrap gap-6">
+        {d.metrics.map((m) => (
+          <div><dt class="text-xs text-[var(--color-muted)]">{m.label}</dt><dd class="text-lg font-bold text-[var(--color-accent)]">{m.value}</dd></div>
+        ))}
+      </dl>
+    )}
+  </header>
+  <article class="prose-portfolio mt-8 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-semibold [&_p]:mt-3">
+    <Content />
+  </article>
+</BaseLayout>

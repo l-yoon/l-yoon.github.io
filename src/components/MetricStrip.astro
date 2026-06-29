@@ -1,0 +1,22 @@
+---
+interface Props {
+  headline: { label: string; value: string }[];
+  competencies: string[];
+}
+const { headline, competencies } = Astro.props;
+---
+<section class="mt-10 grid gap-6">
+  <dl class="grid grid-cols-3 gap-4">
+    {headline.map((m) => (
+      <div>
+        <dt class="text-sm text-[var(--color-muted)]">{m.label}</dt>
+        <dd class="text-2xl font-bold text-[var(--color-accent)]">{m.value}</dd>
+      </div>
+    ))}
+  </dl>
+  <ul class="flex flex-wrap gap-2">
+    {competencies.map((c) => (
+      <li class="rounded-full bg-[var(--color-accent-soft)] px-3 py-1 text-sm text-[var(--color-accent)]">{c}</li>
+    ))}
+  </ul>
+</section>
