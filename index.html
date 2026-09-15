@@ -2094,6 +2094,345 @@
     .qa-status-pill.pass { background: #d1f2d9; color: #1a7f37; }
     .qa-status-pill.shipped { background: #111111; color: #ffffff; }
 
+    
+    /* ─── EVOPLE-STYLE SECTION CONNECTORS & PIPELINE FLOW ─── */
+    .section-flow-connector {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 44px 0;
+      background: var(--bg);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Subtle full-width guideline behind the connector */
+    .section-flow-connector::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--border-subtle) 15%, var(--border) 50%, var(--border-subtle) 85%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .flow-connector-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    /* Telemetry Clusters on Left & Right */
+    .flow-telemetry-cluster {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+    .flow-telemetry-cluster.left { left: 32px; }
+    .flow-telemetry-cluster.right { right: 32px; }
+
+    .flow-coord {
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .flow-sep {
+      color: var(--border);
+    }
+    .flow-meta {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    @media (max-width: 980px) {
+      .flow-telemetry-cluster {
+        display: none !important;
+      }
+      .section-flow-connector {
+        padding: 28px 0;
+      }
+    }
+
+    /* Central vertical track and junction node */
+    .flow-track-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .flow-stem {
+      width: 1px;
+      height: 44px;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-stem-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--text-primary) 0%, #2563eb 100%);
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .flow-packet-dot {
+      position: absolute;
+      left: -2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #2563eb;
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.9);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .section-flow-connector.is-active .flow-stem-fill {
+      transform: scaleY(1);
+    }
+
+    .section-flow-connector.is-active .flow-packet-dot {
+      opacity: 1;
+      animation: flow-packet-transit 2.6s infinite linear;
+    }
+
+    @keyframes flow-packet-transit {
+      0% { top: -6px; opacity: 0; }
+      12% { opacity: 1; }
+      88% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* Junction Milestone Node */
+    .flow-junction-node {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-sub);
+      letter-spacing: 0.04em;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 4;
+      white-space: nowrap;
+    }
+
+    .section-flow-connector.is-active .flow-junction-node {
+      border-color: #111111;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+      transform: scale(1.02);
+    }
+
+    .flow-junction-stage {
+      font-weight: 600;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .flow-junction-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    .flow-junction-divider {
+      color: var(--border);
+    }
+
+    .flow-junction-desc {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.02em;
+    }
+
+    .flow-junction-arrow {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text-sub);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .section-flow-connector.is-active .flow-junction-arrow {
+      transform: translateY(2px);
+      color: #2563eb;
+    }
+/* ─── EVOPLE-STYLE FLOATING PIPELINE JOURNEY HUD ─── */
+    .pipeline-journey-hud {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 45;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 14px 9px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .hud-pill-header {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 0;
+    }
+
+    .hud-live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    .hud-track {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 4px 0;
+    }
+
+    .hud-track-line {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: var(--border);
+      z-index: 1;
+    }
+
+    .hud-track-fill {
+      position: absolute;
+      top: 6px;
+      width: 1px;
+      height: 0px;
+      background: #111111;
+      z-index: 2;
+      transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hud-node {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .hud-pip {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1.5px solid var(--text-dim);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hud-node:hover .hud-pip {
+      border-color: #111111;
+      transform: scale(1.3);
+    }
+
+    .hud-node.active .hud-pip {
+      background: #111111;
+      border-color: #111111;
+      box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.12);
+      transform: scale(1.15);
+    }
+
+    .hud-tooltip {
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%) translateX(6px);
+      background: #111111;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 5px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+
+    .hud-node:hover .hud-tooltip {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    @media (max-width: 1040px) {
+      .pipeline-journey-hud {
+        display: none !important;
+      }
+    }
+
     /* ─── PDF PRINT OPTIMIZATION (@media print) ─── */
     @media print {
       @page {
@@ -2131,7 +2470,9 @@
       .live-clock,
       .live-status-pill,
       .builds-nav-btns,
-      .hero-spec-card-3d-wrap {
+      .hero-spec-card-3d-wrap,
+      .section-flow-connector,
+      .pipeline-journey-hud {
         display: none !important;
       }
       .container {
@@ -2458,7 +2799,7 @@
   <main>
 
     <!-- ─── HERO SECTION (WITH PROFILE PHOTO & FLAGSHIP SHOWCASE SLOTS) ─── -->
-    <section class="hero-section">
+    <section class="hero-section" id="hero">
       <!-- 60fps Interactive Swiss Dot-Matrix Canvas -->
       <canvas id="swissCanvas"></canvas>
 
@@ -2581,6 +2922,49 @@
       </div>
     </section>
 
+    
+        <!-- ─── EVOPLE-STYLE SECTION CONNECTOR 01: HERO ➔ ABOUT ─── -->
+    <div class="section-flow-connector" data-connector-id="00-01">
+      <div class="flow-connector-inner">
+        <div class="flow-telemetry-cluster left">
+          <span class="flow-coord">+ 37.5665° N</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-meta">SYS_PROVENANCE // STAGE 01</span>
+        </div>
+        
+        <div class="flow-track-column">
+          <div class="flow-stem top">
+            <div class="flow-stem-fill"></div>
+            <div class="flow-packet-dot"></div>
+          </div>
+          
+          <div class="flow-junction-node">
+            <span class="flow-junction-stage">
+              <span class="flow-junction-dot"></span>
+              00 ➔ 01
+            </span>
+            <span class="flow-junction-divider">/</span>
+            <span class="flow-junction-desc">CAREER BACKGROUND & TRAJECTORY</span>
+            <span class="flow-junction-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 2.5V9.5M6 9.5L2.5 6M6 9.5L9.5 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          
+          <div class="flow-stem bottom">
+            <div class="flow-stem-fill"></div>
+          </div>
+        </div>
+
+        <div class="flow-telemetry-cluster right">
+          <span class="flow-meta">PIPELINE_INIT // COMMITTED</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-coord">+ 126.9780° E</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ─── INFO & WORK EXPERIENCE SECTION (EDITORIAL MINIMAL STYLE) ─── -->
     <section class="info-section" id="about">
       <div class="container">
@@ -2689,6 +3073,49 @@
         <span class="marquee-sep">✦</span>
         <span class="marquee-item">D2C COMMERCE ZERO-DOWNTIME PG</span>
         <span class="marquee-sep">✦</span>
+      </div>
+    </div>
+
+    
+        <!-- ─── EVOPLE-STYLE SECTION CONNECTOR 02: ABOUT ➔ WORKS ARCHIVE ─── -->
+    <div class="section-flow-connector" data-connector-id="01-02">
+      <div class="flow-connector-inner">
+        <div class="flow-telemetry-cluster left">
+          <span class="flow-coord">+ 37.5012° N</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-meta">PRODUCTION_ARCHIVE // STAGE 02</span>
+        </div>
+        
+        <div class="flow-track-column">
+          <div class="flow-stem top">
+            <div class="flow-stem-fill"></div>
+            <div class="flow-packet-dot"></div>
+          </div>
+          
+          <div class="flow-junction-node">
+            <span class="flow-junction-stage">
+              <span class="flow-junction-dot"></span>
+              01 ➔ 02
+            </span>
+            <span class="flow-junction-divider">/</span>
+            <span class="flow-junction-desc">SELECTED WORKS & SYSTEMS ARCHIVE</span>
+            <span class="flow-junction-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 2.5V9.5M6 9.5L2.5 6M6 9.5L9.5 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          
+          <div class="flow-stem bottom">
+            <div class="flow-stem-fill"></div>
+          </div>
+        </div>
+
+        <div class="flow-telemetry-cluster right">
+          <span class="flow-meta">SYSTEM_SPECS // 8 DELIVERED</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-coord">+ 127.0396° E</span>
+        </div>
       </div>
     </div>
 
@@ -3047,12 +3474,55 @@
       </div>
     </section>
 
+    
+        <!-- ─── EVOPLE-STYLE SECTION CONNECTOR 03: WORKS ARCHIVE ➔ CAPABILITIES ─── -->
+    <div class="section-flow-connector" data-connector-id="02-03">
+      <div class="flow-connector-inner">
+        <div class="flow-telemetry-cluster left">
+          <span class="flow-coord">+ 37.4981° N</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-meta">EXECUTION_STACK // STAGE 03</span>
+        </div>
+        
+        <div class="flow-track-column">
+          <div class="flow-stem top">
+            <div class="flow-stem-fill"></div>
+            <div class="flow-packet-dot"></div>
+          </div>
+          
+          <div class="flow-junction-node">
+            <span class="flow-junction-stage">
+              <span class="flow-junction-dot"></span>
+              02 ➔ 03
+            </span>
+            <span class="flow-junction-divider">/</span>
+            <span class="flow-junction-desc">EXECUTION ARCHITECTURE & CAPABILITIES</span>
+            <span class="flow-junction-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 2.5V9.5M6 9.5L2.5 6M6 9.5L9.5 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          
+          <div class="flow-stem bottom">
+            <div class="flow-stem-fill"></div>
+          </div>
+        </div>
+
+        <div class="flow-telemetry-cluster right">
+          <span class="flow-meta">DISCIPLINE // 4-PILLARS</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-coord">+ 127.0276° E</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ─── CAPABILITIES SECTION (4-COLUMN CAPABILITIES WITH WIREFRAME ART) ─── -->
     <section class="capabilities-section" id="capabilities">
       <div class="container">
         
         <div class="section-header-block reveal-item">
-          <div class="section-tag">04 / Capabilities</div>
+          <div class="section-tag">03 / Capabilities & Execution Architecture</div>
           <div class="section-heading-wrap">
             <h2>How I Execute.</h2>
             <p>비즈니스 요구와 엔지니어링 구현 사이의 간극을 좁히는 4대 핵심 역량입니다.</p>
@@ -3156,10 +3626,54 @@
       </div>
     </section>
 
+    
+        <!-- ─── EVOPLE-STYLE SECTION CONNECTOR 04: CAPABILITIES ➔ CONTACT ─── -->
+    <div class="section-flow-connector" data-connector-id="03-04">
+      <div class="flow-connector-inner">
+        <div class="flow-telemetry-cluster left">
+          <span class="flow-coord">+ 37.5172° N</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-meta">TERMINAL_SYNC // STAGE 04</span>
+        </div>
+        
+        <div class="flow-track-column">
+          <div class="flow-stem top">
+            <div class="flow-stem-fill"></div>
+            <div class="flow-packet-dot"></div>
+          </div>
+          
+          <div class="flow-junction-node">
+            <span class="flow-junction-stage">
+              <span class="flow-junction-dot"></span>
+              03 ➔ 04
+            </span>
+            <span class="flow-junction-divider">/</span>
+            <span class="flow-junction-desc">AUDIT LOGS & DIRECT COLLABORATION</span>
+            <span class="flow-junction-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 2.5V9.5M6 9.5L2.5 6M6 9.5L9.5 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          
+          <div class="flow-stem bottom">
+            <div class="flow-stem-fill"></div>
+          </div>
+        </div>
+
+        <div class="flow-telemetry-cluster right">
+          <span class="flow-meta">DIRECT_CHANNEL // READY</span>
+          <span class="flow-sep">/</span>
+          <span class="flow-coord">+ 127.0412° E</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ─── CONTACT SECTION ─── -->
     <section class="contact-section" id="contact">
       <div class="container">
         
+        <div class="section-tag reveal-item" style="margin-bottom: 24px;">04 / Contact & Collaboration</div>
         <h2 class="contact-heading reveal-item">
           Let's build products<br>with discipline.
         </h2>
@@ -3189,6 +3703,40 @@
 
       </div>
     </section>
+
+  
+  <!-- ─── EVOPLE-STYLE FLOATING PIPELINE JOURNEY HUD ─── -->
+  <aside class="pipeline-journey-hud" id="pipelineJourneyHud" aria-label="System Journey Navigator">
+    <div class="hud-pill-header">
+      <span class="hud-live-dot"></span>
+      <span>JOURNEY</span>
+    </div>
+    <div class="hud-track">
+      <div class="hud-track-line"></div>
+      <div class="hud-track-fill" id="hudTrackFill"></div>
+      
+      <a href="#hero" class="hud-node active" data-target-section="hero" aria-label="00 Hero / Overview">
+        <span class="hud-pip"></span>
+        <span class="hud-tooltip">00 / Overview</span>
+      </a>
+      <a href="#about" class="hud-node" data-target-section="about" aria-label="01 Career Background">
+        <span class="hud-pip"></span>
+        <span class="hud-tooltip">01 / Background</span>
+      </a>
+      <a href="#work" class="hud-node" data-target-section="work" aria-label="02 Selected Works & Systems Archive">
+        <span class="hud-pip"></span>
+        <span class="hud-tooltip">02 / Works Archive</span>
+      </a>
+      <a href="#capabilities" class="hud-node" data-target-section="capabilities" aria-label="03 Execution Capabilities">
+        <span class="hud-pip"></span>
+        <span class="hud-tooltip">03 / Capabilities</span>
+      </a>
+      <a href="#contact" class="hud-node" data-target-section="contact" aria-label="04 Direct Contact">
+        <span class="hud-pip"></span>
+        <span class="hud-tooltip">04 / Contact</span>
+      </a>
+    </div>
+  </aside>
 
   </main>
 
@@ -4483,6 +5031,90 @@
           });
         });
       });
+    })();
+
+    
+    // ─── EVOPLE-STYLE PIPELINE JOURNEY HUD & SECTION CONNECTORS ENGINE ───
+    (function initPipelineJourney() {
+      const sections = [
+        { id: 'hero', name: '00 Overview' },
+        { id: 'about', name: '01 Background' },
+        { id: 'work', name: '02 Works' },
+        { id: 'capabilities', name: '03 Capabilities' },
+        { id: 'contact', name: '04 Contact' }
+      ];
+
+      const hudNodes = document.querySelectorAll('.hud-node');
+      const hudTrackFill = document.getElementById('hudTrackFill');
+      const connectors = document.querySelectorAll('.section-flow-connector');
+
+      // Click to smooth scroll
+      hudNodes.forEach(node => {
+        node.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = node.getAttribute('data-target-section');
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Observer for Connectors (Active draw line & packet transit)
+      const connectorObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+      connectors.forEach(c => connectorObserver.observe(c));
+
+      // Scroll handler for HUD progress tracking
+      function updateJourneyHUD() {
+        const scrollY = window.scrollY;
+        const vh = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+
+        let activeIdx = 0;
+        sections.forEach((sec, idx) => {
+          const el = document.getElementById(sec.id);
+          if (el) {
+            const top = el.offsetTop - 200;
+            if (scrollY >= top) {
+              activeIdx = idx;
+            }
+          }
+        });
+
+        // Near bottom check
+        if (scrollY + vh >= docHeight - 100) {
+          activeIdx = sections.length - 1;
+        }
+
+        // Update active HUD nodes
+        hudNodes.forEach((node, idx) => {
+          if (idx === activeIdx) {
+            node.classList.add('active');
+          } else {
+            node.classList.remove('active');
+          }
+        });
+
+        // Update HUD Track Fill height
+        if (hudTrackFill && hudNodes.length > 1) {
+          const totalGap = 16; // CSS gap between nodes
+          const pipHeight = 9;
+          const stepDist = pipHeight + totalGap;
+          const fillHeight = activeIdx * stepDist;
+          hudTrackFill.style.height = `${fillHeight}px`;
+        }
+      }
+
+      window.addEventListener('scroll', updateJourneyHUD, { passive: true });
+      window.addEventListener('resize', updateJourneyHUD, { passive: true });
+      updateJourneyHUD();
     })();
 
     // ─── SCROLL REVEAL OBSERVER ───
