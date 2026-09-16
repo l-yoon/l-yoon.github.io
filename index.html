@@ -74,7 +74,7 @@
       padding: 0 32px;
     }
 
-    /* ─── HEADER (EDITORIAL MINIMAL HEADER WITH LIVE METADATA) ─── */
+    /* ─── HEADER (SWISS EDITORIAL MINIMAL NAVBAR) ─── */
     .site-header {
       position: sticky;
       top: 0;
@@ -86,7 +86,7 @@
       transition: border-color 0.2s ease;
     }
     .header-inner {
-      height: 64px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -94,7 +94,7 @@
     .header-left {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
     .header-brand {
       display: flex;
@@ -106,44 +106,29 @@
       flex-shrink: 0;
     }
     .brand-name {
-      font-size: 14.5px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       letter-spacing: -0.02em;
-      white-space: nowrap;
+      color: var(--text-primary);
     }
-    .brand-title {
+    .brand-en {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
+      font-weight: 400;
       letter-spacing: 0.02em;
-      white-space: nowrap;
     }
-    .header-live-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: var(--text-muted);
-      border-left: 1px solid var(--border);
-      padding-left: 16px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .live-clock {
-      letter-spacing: 0.02em;
-      color: var(--text-sub);
-    }
-    .live-status-pill {
+    .header-status-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 2.5px 8px;
+      padding: 2.5px 9px;
       border-radius: 999px;
       background: #f4fbf6;
       border: 1px solid #d1f2d9;
       color: #1a7f37;
-      font-size: 10.5px;
+      font-size: 11px;
+      font-family: var(--font-mono);
       font-weight: 500;
       letter-spacing: 0.02em;
     }
@@ -163,7 +148,7 @@
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 26px;
     }
     .header-nav a {
       font-size: 13.5px;
@@ -175,6 +160,35 @@
     .header-nav a:hover,
     .header-nav a.active {
       color: var(--text-primary);
+    }
+    .header-pdf-btn {
+      font-family: var(--font-mono);
+      font-size: 11.5px !important;
+      font-weight: 600 !important;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #fafafa;
+      color: var(--text-primary) !important;
+      transition: all 0.2s ease !important;
+      margin-left: 4px;
+    }
+    .header-pdf-btn:hover {
+      background: #111111 !important;
+      color: #ffffff !important;
+      border-color: #111111 !important;
+    }
+
+    @media (max-width: 768px) {
+      .header-status-badge {
+        display: none;
+      }
+      .header-nav {
+        gap: 16px;
+      }
+      .header-nav a:not([href="#about"]):not([href="#work"]):not(.header-pdf-btn) {
+        display: none;
+      }
     }
 
     /* ─── HERO SECTION ─── */
@@ -2626,22 +2640,20 @@
     <div class="container header-inner">
       <div class="header-left">
         <a href="#" class="header-brand">
-          <span class="brand-name">윤찬민 · Min Yoon</span>
-          <span class="brand-title">Product Manager · Spec to Release</span>
+          <span class="brand-name">윤찬민</span>
+          <span class="brand-en">Min Yoon</span>
         </a>
-        <div class="header-live-meta">
-          <span class="live-clock" id="liveClock">14 Sep — 17:52 Seoul, KR</span>
-          <span class="live-status-pill">
-            <span class="status-dot"></span> Available for APM / PM / PO
-          </span>
+        <div class="header-status-badge">
+          <span class="status-dot"></span>
+          <span>Available</span>
         </div>
       </div>
       <nav class="header-nav">
         <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#work">Works & Systems</a>
+        <a href="#work">Works</a>
         <a href="#capabilities">Capabilities</a>
         <a href="#contact">Contact</a>
+        <a href="./yoon-chanmin-portfolio.pdf" target="_blank" rel="noopener" class="header-pdf-btn">PDF ↗</a>
       </nav>
     </div>
   </header>
