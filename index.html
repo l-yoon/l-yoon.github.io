@@ -2109,6 +2109,425 @@
     .qa-status-pill.shipped { background: #111111; color: #ffffff; }
 
     
+    /* ─── SPLIT VISUAL BENTO CARDS & CATEGORY SEPARATION ─── */
+    .bento-split-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 52px;
+    }
+
+    .bento-split-card {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      align-items: center;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .bento-split-card:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Visual Mockup Frame (Mac/Browser Window Frame) */
+    .mockup-frame {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 230px;
+    }
+
+    .mockup-window-header {
+      height: 32px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+    }
+
+    .mockup-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .mockup-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .mockup-url-bar {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 2px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .mockup-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      padding: 1.5px 6px;
+      border-radius: 3px;
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #dbeafe;
+    }
+    .mockup-tag.green {
+      background: #f0fdf4;
+      color: #16a34a;
+      border-color: #dcfce7;
+    }
+    .mockup-tag.purple {
+      background: #faf5ff;
+      color: #9333ea;
+      border-color: #f3e8ff;
+    }
+
+    .mockup-screen-canvas {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+    }
+
+    /* LMS UI Schematic */
+    .mockup-ui-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .mockup-ui-brand {
+      width: 44px;
+      height: 10px;
+      background: #cbd5e1;
+      border-radius: 2px;
+    }
+    .mockup-ui-nav-pills {
+      display: flex;
+      gap: 6px;
+    }
+    .nav-pill {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .nav-pill.active {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .mockup-ui-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 10px;
+    }
+    .mockup-ui-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mockup-badge {
+      font-size: 9px;
+      font-weight: 600;
+      color: #64748b;
+      letter-spacing: 0.05em;
+    }
+    .mockup-chart-bars {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      display: flex;
+      overflow: hidden;
+      margin: 4px 0;
+    }
+    .mockup-chart-bars .bar-a { background: #94a3b8; }
+    .mockup-chart-bars .bar-b { background: #16a34a; }
+
+    .mockup-chart-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--text-sub);
+    }
+    .mockup-chart-legend .highlight { color: #16a34a; font-weight: 600; }
+
+    .mockup-code-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .mockup-code-lines code {
+      font-size: 9px;
+      color: #334155;
+      white-space: nowrap;
+    }
+
+    /* IoT Surface Grid Schematic */
+    .iot-surfaces-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .iot-surface-node {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 8px 4px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .node-icon {
+      font-size: 8px;
+      font-weight: 700;
+      color: #64748b;
+    }
+    .node-label {
+      font-size: 9.5px;
+      font-family: var(--font-sans);
+      color: #1e293b;
+      font-weight: 500;
+    }
+    .node-status.live {
+      font-size: 8px;
+      font-weight: 700;
+      color: #16a34a;
+    }
+    .iot-hotfix-bar {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 8px;
+    }
+    .hotfix-pip-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #64748b;
+    }
+    .hotfix-pip-track .highlight { color: #dc2626; font-weight: 600; }
+    .hotfix-pip-track .success { color: #16a34a; font-weight: 600; }
+
+    /* AI Frame & Dark Screen */
+    .ai-frame {
+      background: #0f172a;
+      border-color: #1e293b;
+    }
+    .dark-header {
+      background: #1e293b !important;
+      border-color: #334155 !important;
+    }
+    .mockup-url-bar.dark {
+      background: #0f172a;
+      color: #94a3b8;
+    }
+    .dark-screen {
+      color: #f8fafc;
+    }
+    .terminal-header-line {
+      font-size: 10px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+    .term-prompt { color: #38bdf8; font-weight: 700; }
+    .terminal-stats-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+    }
+    .term-stat-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .term-stat-num {
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .text-danger { color: #f87171; }
+    .text-success { color: #4ade80; }
+    .term-stat-lbl {
+      font-size: 8.5px;
+      color: #94a3b8;
+    }
+    .term-stat-arrow {
+      color: #64748b;
+      font-size: 12px;
+    }
+    .terminal-code-logs {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .terminal-code-logs code {
+      font-size: 9px;
+      color: #94a3b8;
+    }
+
+    /* AI Operations Header Block */
+    .ai-operations-section {
+      margin-bottom: 56px;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .ai-ops-header {
+      margin-bottom: 20px;
+    }
+    .ai-ops-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #7c3aed;
+      margin-bottom: 6px;
+    }
+    .ai-ops-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7c3aed;
+      box-shadow: 0 0 6px rgba(124, 58, 237, 0.5);
+    }
+    .ai-ops-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .ai-ops-subtitle {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .ai-lab-card {
+      background: #ffffff !important;
+    }
+
+    /* Spec Column (Right Side of Bento Card) */
+    .bento-spec-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .spec-col-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .spec-category-badge {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .spec-category-badge.client {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+    }
+    .spec-category-badge.internal {
+      background: #faf5ff;
+      color: #7c3aed;
+      border: 1px solid #f3e8ff;
+    }
+    .spec-timeline {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+    .spec-col-title {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--text-primary);
+    }
+    .spec-col-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-sub);
+    }
+    .spec-metrics-pills {
+      display: flex;
+      gap: 10px;
+      margin: 6px 0;
+      flex-wrap: wrap;
+    }
+    .metric-pill {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-pill .metric-num {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      letter-spacing: -0.02em;
+    }
+    .metric-pill .metric-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 920px) {
+      .bento-split-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 18px;
+      }
+      .ai-operations-section {
+        padding: 20px;
+      }
+    }
+
     /* ─── EVOPLE-STYLE SECTION CONNECTORS & PIPELINE FLOW (RADICAL MINIMAL) ─── */
     .section-flow-connector {
       position: relative;
@@ -2464,78 +2883,111 @@
         padding: 1pt 5pt !important;
       }
 
-      /* PAGE 2: 3 CORE BENTO MONOGRAPHS & SYSTEMS ARCHIVE */
+      /* PAGE 2: FLAGSHIP CLIENT RELEASES & AI LAB */
       .works-archive-section {
         padding: 0 !important;
-        page-break-after: always;
-        break-after: page;
       }
-      .bento-flagship-grid {
-        gap: 8pt !important;
-        margin-bottom: 12pt !important;
+      .bento-split-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6pt !important;
+        margin-bottom: 6pt !important;
       }
-      .bento-flagship-card {
-        border: 1pt solid #cccccc !important;
+      .bento-split-card {
+        display: block !important;
+        border: 1pt solid #e0e0e0 !important;
         border-radius: 3pt !important;
-        padding: 8pt 10pt !important;
+        padding: 6pt 8pt !important;
         margin-bottom: 0 !important;
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
-      .bento-card-topbar {
-        margin-bottom: 4pt !important;
-        padding-bottom: 3pt !important;
-      }
-      .bento-idx {
-        font-size: 7pt !important;
-        padding: 1pt 4pt !important;
-      }
-      .bento-domain-pill, .bento-timeline {
-        font-size: 6.5pt !important;
-      }
-      .bento-title {
-        font-size: 10pt !important;
-        line-height: 1.2 !important;
-        margin-bottom: 3pt !important;
-      }
-      .bento-desc {
-        font-size: 7.5pt !important;
-        line-height: 1.3 !important;
-        margin-bottom: 6pt !important;
-      }
-      .bento-pipeline-strip {
-        padding: 4pt 8pt !important;
-        margin-bottom: 6pt !important;
-        gap: 6pt !important;
-      }
-      .pipeline-strip-label {
-        font-size: 6.5pt !important;
-        padding-right: 6pt !important;
-      }
-      .strip-step {
-        font-size: 6.5pt !important;
-        padding: 2pt 6pt !important;
-      }
-      .bento-bottom-row {
-        padding-top: 4pt !important;
-      }
-      .bento-metrics-grid {
-        gap: 16pt !important;
-      }
-      .bento-metric-val {
-        font-size: 11pt !important;
-      }
-      .bento-metric-lbl {
-        font-size: 6pt !important;
-      }
-      .bento-cta-btn, .filter-pill-bar, .col-action {
+      .mockup-frame {
         display: none !important;
       }
-      .archive-matrix-wrap {
-        margin-top: 10pt !important;
-        padding-top: 8pt !important;
+      .bento-spec-column {
+        gap: 3pt !important;
+      }
+      .spec-col-meta {
+        gap: 6pt !important;
+      }
+      .spec-category-badge {
+        font-size: 6.5pt !important;
+        padding: 1pt 4pt !important;
+      }
+      .spec-timeline {
+        font-size: 6.5pt !important;
+      }
+      .spec-col-title {
+        font-size: 9.5pt !important;
+        line-height: 1.2 !important;
+        margin: 1pt 0 2pt 0 !important;
+      }
+      .spec-col-desc {
+        font-size: 7.5pt !important;
+        line-height: 1.3 !important;
+        margin: 0 !important;
+      }
+      .spec-metrics-pills {
+        display: flex !important;
+        gap: 12pt !important;
+        margin: 3pt 0 0 0 !important;
+      }
+      .metric-pill {
+        border: none !important;
+        padding: 0 !important;
+        background: none !important;
+      }
+      .metric-pill .metric-num {
+        font-size: 10pt !important;
+      }
+      .metric-pill .metric-label {
+        font-size: 6pt !important;
+      }
+      .bento-cta-btn, .spec-col-footer, .filter-pill-bar, .col-action {
+        display: none !important;
+      }
+
+      /* AI Operations Section in Print */
+      .ai-operations-section {
+        background: none !important;
+        border: 1pt solid #e5e5e5 !important;
+        border-radius: 3pt !important;
+        padding: 6pt 8pt !important;
+        margin-bottom: 0 !important;
         break-inside: avoid !important;
         page-break-inside: avoid !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .ai-ops-header {
+        margin-bottom: 4pt !important;
+      }
+      .ai-ops-tag {
+        font-size: 6.5pt !important;
+        margin-bottom: 2pt !important;
+      }
+      .ai-ops-title {
+        font-size: 10.5pt !important;
+        margin-bottom: 1pt !important;
+      }
+      .ai-ops-subtitle {
+        font-size: 7.5pt !important;
+        line-height: 1.25 !important;
+      }
+      .ai-lab-card {
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      /* PAGE 3: FULL ARCHIVE MATRIX */
+      .archive-matrix-wrap {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        page-break-after: always !important;
+        break-after: page !important;
       }
       .archive-title {
         font-size: 11pt !important;
@@ -2565,10 +3017,12 @@
         font-size: 6.5pt !important;
       }
 
-      /* PAGE 3: CAPABILITIES & CONTACT */
+      /* PAGE 4: CAPABILITIES & ARCHITECTURE */
       .capabilities-section {
         padding: 0 0 10pt 0 !important;
         border-bottom: 1pt solid #dddddd !important;
+        page-break-after: always !important;
+        break-after: page !important;
       }
       .capabilities-grid {
         display: grid !important;
@@ -2933,67 +3387,82 @@
           </div>
         </div>
 
-        <!-- PART A: 3 FLAGSHIP BENTO CARDS -->
-        <div class="bento-flagship-grid">
+        <!-- PART A: COMMERCIAL B2B PLATFORMS (2 FLAGSHIP CLIENT RELEASES) -->
+        <div class="bento-split-list">
           
-          <!-- Bento 01: LMS Renewal -->
-          <article class="bento-flagship-card reveal-item">
-            <div class="bento-card-topbar">
-              <div class="bento-card-badge-group">
-                <span class="bento-idx">CASE 01</span>
-                <span class="bento-domain-pill">EDUTECH LMS PLATFORM</span>
+          <!-- Bento 01: LMS Renewal (Commercial B2B) -->
+          <article class="bento-split-card reveal-item">
+            <!-- Left: Visual UI Mockup Frame -->
+            <div class="mockup-frame">
+              <div class="mockup-window-header">
+                <div class="mockup-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <div class="mockup-url-bar">lms.enterprise.internal/curriculum-v2</div>
+                <div class="mockup-tag">AST VERIFIED</div>
               </div>
-              <span class="bento-timeline">2025.08 — CURRENT · SPEC-TO-RELEASE</span>
+              <div class="mockup-screen-canvas lms-screen">
+                <div class="mockup-ui-header">
+                  <div class="mockup-ui-brand"></div>
+                  <div class="mockup-ui-nav-pills">
+                    <span class="nav-pill active">Curriculum</span>
+                    <span class="nav-pill">Routes (159)</span>
+                    <span class="nav-pill">QA Gates</span>
+                  </div>
+                </div>
+                <div class="mockup-ui-grid">
+                  <div class="mockup-ui-card scope-defense">
+                    <div class="mockup-badge">CR ANALYSIS (60 TOTAL)</div>
+                    <div class="mockup-chart-bars">
+                      <div class="bar bar-a" style="width: 27%;"></div>
+                      <div class="bar bar-b" style="width: 68.3%;"></div>
+                    </div>
+                    <div class="mockup-chart-legend">
+                      <span>A 16 (무상)</span>
+                      <strong class="highlight">B 41 (68.3% 방어)</strong>
+                    </div>
+                  </div>
+                  <div class="mockup-ui-card routes-audit">
+                    <div class="mockup-badge">AST ROUTE MAPPER</div>
+                    <div class="mockup-code-lines">
+                      <code>&gt; GET /api/v2/lecture [OK]</code>
+                      <code>&gt; 19 UNLISTED SURFACES</code>
+                      <code>&gt; 101/142 DEFECTS CLOSED</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="bento-card-body">
-              <h3 class="bento-title">대형 어학교육 플랫폼 전면 리뉴얼 & Spec-to-Release</h3>
-              <p class="bento-desc">
+            <!-- Right: 3-Second Scannable Spec Column -->
+            <div class="bento-spec-column">
+              <div class="spec-col-meta">
+                <span class="spec-category-badge client">COMMERCIAL B2B</span>
+                <span class="spec-timeline">2025.08 — CURRENT</span>
+              </div>
+              <h3 class="spec-col-title">대형 어학교육 플랫폼 전면 리뉴얼</h3>
+              <p class="spec-col-desc">
                 ASP.NET 3개 레거시를 단일 플랫폼으로 통합. Jira 로그 기반 60건 CR 전수 분석으로 <strong>68.3%의 계약 외 요구를 방어</strong>하고, 159개 라우트 전수 감사로 누락 서피스 19개를 선제 기획했습니다.
               </p>
-
-              <!-- Mini Blueprint Pipeline Strip -->
-              <div class="bento-pipeline-strip">
-                <div class="pipeline-strip-label">PIPELINE AUDIT</div>
-                <div class="pipeline-strip-flow">
-                  <div class="strip-step">
-                    <span class="strip-step-num">01</span>
-                    <span class="strip-step-text">Production Bundle</span>
-                  </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step highlight">
-                    <span class="strip-step-num">02</span>
-                    <span class="strip-step-text">159 Routes Mapped</span>
-                  </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step highlight">
-                    <span class="strip-step-num">03</span>
-                    <span class="strip-step-text">19 Surfaces Written</span>
-                  </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step">
-                    <span class="strip-step-num">04</span>
-                    <span class="strip-step-text">Zero Blocker Ship</span>
-                  </div>
+              
+              <div class="spec-metrics-pills">
+                <div class="metric-pill">
+                  <span class="metric-num">68.3%</span>
+                  <span class="metric-label">Scope Defended</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="metric-num">19 Surfaces</span>
+                  <span class="metric-label">Specified</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="metric-num">101 / 142</span>
+                  <span class="metric-label">Defects Closed</span>
                 </div>
               </div>
 
-              <!-- Metrics & CTA -->
-              <div class="bento-bottom-row">
-                <div class="bento-metrics-grid">
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">68.3%</div>
-                    <div class="bento-metric-lbl">Scope Defended (60건 CR 전수 분류)</div>
-                  </div>
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">19 Surfaces</div>
-                    <div class="bento-metric-lbl">Specified (명세 누락 화면 선제 기획)</div>
-                  </div>
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">101 / 142</div>
-                    <div class="bento-metric-lbl">Defects Closed (QA 결함 종결 71.1%)</div>
-                  </div>
-                </div>
+              <div class="spec-col-footer">
                 <button class="bento-cta-btn" onclick="openCaseModal(0)">
                   Read Full Evople Spec →
                 </button>
@@ -3001,129 +3470,81 @@
             </div>
           </article>
 
-          <!-- Bento 02: AI Automation & Unlearning -->
-          <article class="bento-flagship-card reveal-item reveal-delay-1">
-            <div class="bento-card-topbar">
-              <div class="bento-card-badge-group">
-                <span class="bento-idx">CASE 02</span>
-                <span class="bento-domain-pill">AI SYSTEMS & TOOLING</span>
+          <!-- Bento 02: PropTech SLA (Commercial B2B) -->
+          <article class="bento-split-card reveal-item reveal-delay-1">
+            <!-- Left: Visual UI Mockup Frame -->
+            <div class="mockup-frame">
+              <div class="mockup-window-header">
+                <div class="mockup-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <div class="mockup-url-bar">iot.centerfield.seoul/surfaces/live</div>
+                <div class="mockup-tag green">99.98% SLA</div>
               </div>
-              <span class="bento-timeline">2026.07 — CURRENT · ORCHESTRATION</span>
-            </div>
-
-            <div class="bento-card-body">
-              <h3 class="bento-title">PM 업무 자동화와 아키텍처 '언러닝(Unlearning)'</h3>
-              <p class="bento-desc">
-                Docker/MCP 기반 12개 에이전트 파이프라인 비용 실측. 하루 670회 대기 호출 대비 실작업 2건의 비효율을 확인하고, <strong>상시 대기 구조를 전면 폐기</strong>하여 온디맨드 아키텍처로 단순화했습니다.
-              </p>
-
-              <!-- Mini Blueprint Pipeline Strip -->
-              <div class="bento-pipeline-strip">
-                <div class="pipeline-strip-label">UNLEARNING FLOW</div>
-                <div class="pipeline-strip-flow">
-                  <div class="strip-step">
-                    <span class="strip-step-num">01</span>
-                    <span class="strip-step-text">12 Agent Lanes</span>
+              <div class="mockup-screen-canvas iot-screen">
+                <div class="iot-surfaces-grid">
+                  <div class="iot-surface-node">
+                    <span class="node-icon">ADMIN</span>
+                    <span class="node-label">관리자 웹</span>
+                    <span class="node-status live">LIVE</span>
                   </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step">
-                    <span class="strip-step-num">02</span>
-                    <span class="strip-step-text">Daily 670 Calls</span>
+                  <div class="iot-surface-node">
+                    <span class="node-icon">TENANT</span>
+                    <span class="node-label">입주사 웹</span>
+                    <span class="node-status live">LIVE</span>
                   </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step highlight">
-                    <span class="strip-step-num">03</span>
-                    <span class="strip-step-text">Cost Audit (2 Tasks)</span>
+                  <div class="iot-surface-node">
+                    <span class="node-icon">APP</span>
+                    <span class="node-label">입주민 모바일</span>
+                    <span class="node-status live">LIVE</span>
                   </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step highlight">
-                    <span class="strip-step-num">04</span>
-                    <span class="strip-step-text">On-Demand Shift</span>
+                  <div class="iot-surface-node">
+                    <span class="node-icon">KIOSK</span>
+                    <span class="node-label">로비 키오스크</span>
+                    <span class="node-status live">LIVE</span>
+                  </div>
+                </div>
+                <div class="iot-hotfix-bar">
+                  <div class="hotfix-pip-track">
+                    <span class="hotfix-label">D-6 TRACE</span>
+                    <span>➔</span>
+                    <span class="hotfix-label highlight">3 HARDCODED BUGS</span>
+                    <span>➔</span>
+                    <span class="hotfix-label success">D-48H HOTFIX PASS</span>
                   </div>
                 </div>
               </div>
-
-              <!-- Metrics & CTA -->
-              <div class="bento-bottom-row">
-                <div class="bento-metrics-grid">
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">670 → 0</div>
-                    <div class="bento-metric-lbl">Daily Calls Cut (상시 호출 완전 폐기)</div>
-                  </div>
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">12 Lanes</div>
-                    <div class="bento-metric-lbl">MCP Agents (필요 시 즉시 가동 레인)</div>
-                  </div>
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">On-Demand</div>
-                    <div class="bento-metric-lbl">Architecture (비용 대비 효용 최적화)</div>
-                  </div>
-                </div>
-                <button class="bento-cta-btn" onclick="openCaseModal(1)">
-                  Read Full Evople Spec →
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Bento 03: Proptech SLA & Hotfix -->
-          <article class="bento-flagship-card reveal-item reveal-delay-2">
-            <div class="bento-card-topbar">
-              <div class="bento-card-badge-group">
-                <span class="bento-idx">CASE 03</span>
-                <span class="bento-domain-pill">PROPTECH & IOT PLATFORM</span>
-              </div>
-              <span class="bento-timeline">2025.07 — CURRENT · 99.98% SLA</span>
             </div>
 
-            <div class="bento-card-body">
-              <h3 class="bento-title">복합빌딩 5개 서피스 무중단 SLA 운영 & 긴급 핫픽스</h3>
-              <p class="bento-desc">
+            <!-- Right: 3-Second Scannable Spec Column -->
+            <div class="bento-spec-column">
+              <div class="spec-col-meta">
+                <span class="spec-category-badge client">COMMERCIAL B2B</span>
+                <span class="spec-timeline">2025.07 — CURRENT</span>
+              </div>
+              <h3 class="spec-col-title">복합빌딩 5개 서피스 무중단 SLA & 긴급 핫픽스</h3>
+              <p class="spec-col-desc">
                 프라임 복합빌딩(센터필드·그랑서울) 5개 라이브 서피스 무중단 운영. 오픈 6일 전 비즈니스 로직 <strong>하드코딩 3개소를 역추적·긴급 핫픽스</strong>하여 오픈 지연 0일과 1년 계약 갱신을 달성했습니다.
               </p>
-
-              <!-- Mini Blueprint Pipeline Strip -->
-              <div class="bento-pipeline-strip">
-                <div class="pipeline-strip-label">SLA HOTFIX FLOW</div>
-                <div class="pipeline-strip-flow">
-                  <div class="strip-step">
-                    <span class="strip-step-num">01</span>
-                    <span class="strip-step-text">5 Live Surfaces</span>
-                  </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step">
-                    <span class="strip-step-num">02</span>
-                    <span class="strip-step-text">Hardcoded Bug D-6</span>
-                  </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step highlight">
-                    <span class="strip-step-num">03</span>
-                    <span class="strip-step-text">AST Commit Trace</span>
-                  </div>
-                  <span class="strip-arrow">→</span>
-                  <div class="strip-step highlight">
-                    <span class="strip-step-num">04</span>
-                    <span class="strip-step-text">D-48h Ship (+1Y)</span>
-                  </div>
+              
+              <div class="spec-metrics-pills">
+                <div class="metric-pill">
+                  <span class="metric-num">99.98%</span>
+                  <span class="metric-label">SLA Uptime</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="metric-num">0 Days</span>
+                  <span class="metric-label">Open Delay</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="metric-num">+1 Year</span>
+                  <span class="metric-label">Contract Renewed</span>
                 </div>
               </div>
 
-              <!-- Metrics & CTA -->
-              <div class="bento-bottom-row">
-                <div class="bento-metrics-grid">
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">99.98%</div>
-                    <div class="bento-metric-lbl">SLA Uptime (5개 서피스 무중단 가동)</div>
-                  </div>
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">0 Days</div>
-                    <div class="bento-metric-lbl">Delay (신규 테넌트 매장 정시 오픈)</div>
-                  </div>
-                  <div class="bento-metric-item">
-                    <div class="bento-metric-val">+1 Year</div>
-                    <div class="bento-metric-lbl">Renewal (2027.06까지 계약 갱신)</div>
-                  </div>
-                </div>
+              <div class="spec-col-footer">
                 <button class="bento-cta-btn" onclick="openCaseModal(2)">
                   Read Full Evople Spec →
                 </button>
@@ -3131,6 +3552,89 @@
             </div>
           </article>
 
+        </div>
+
+        <!-- ─── PART B: AI-NATIVE PM OPERATIONS & SYSTEM LAB ─── -->
+        <div class="ai-operations-section reveal-item">
+          <div class="ai-ops-header">
+            <div class="ai-ops-tag">
+              <span class="ai-ops-dot"></span>
+              AI-NATIVE PM OPERATIONS · INTERNAL LAB
+            </div>
+            <h3 class="ai-ops-title">How a Sole PM Orchestrates 8 Products.</h3>
+            <p class="ai-ops-subtitle">
+              1인 PM의 한계를 극복하기 위해 직접 구축하고, 비용 실측 후 온디맨드로 과감히 최적화(언러닝)한 자동화 파이프라인입니다.
+            </p>
+          </div>
+
+          <article class="bento-split-card ai-lab-card">
+            <!-- Left: Terminal Schematic Frame -->
+            <div class="mockup-frame ai-frame">
+              <div class="mockup-window-header dark-header">
+                <div class="mockup-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <div class="mockup-url-bar dark">docker://mcp-pm-mesh/unlearning</div>
+                <div class="mockup-tag purple">ON-DEMAND</div>
+              </div>
+              <div class="mockup-screen-canvas dark-screen">
+                <div class="terminal-header-line">
+                  <span class="term-prompt">$</span> <span>pm-orchestrator --audit-standby-cost</span>
+                </div>
+                <div class="terminal-stats-grid">
+                  <div class="term-stat-box">
+                    <span class="term-stat-num text-danger">670 calls/day</span>
+                    <span class="term-stat-lbl">Standby Wakeups</span>
+                  </div>
+                  <div class="term-stat-arrow">➔</div>
+                  <div class="term-stat-box">
+                    <span class="term-stat-num text-success">0 calls (100% Cut)</span>
+                    <span class="term-stat-lbl">On-Demand CLI Shift</span>
+                  </div>
+                </div>
+                <div class="terminal-code-logs">
+                  <code>[UNLEARN] 12 Standby MCP Daemons decommissioned</code>
+                  <code>[EFFICIENCY] Standby cost reduced to $0.00 / Active CLI Only</code>
+                  <code>[VELOCITY] 8 projects managed with 0 missed sprints</code>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Spec Column -->
+            <div class="bento-spec-column">
+              <div class="spec-col-meta">
+                <span class="spec-category-badge internal">INTERNAL SYSTEM LAB</span>
+                <span class="spec-timeline">2026.07 — CURRENT</span>
+              </div>
+              <h3 class="spec-col-title">PM 업무 자동화와 아키텍처 '언러닝(Unlearning)'</h3>
+              <p class="spec-col-desc">
+                Docker/MCP 기반 12개 에이전트 파이프라인 비용 실측. 하루 670회 대기 호출 대비 실작업 2건의 비효율을 확인하고, <strong>상시 대기 구조를 전면 폐기</strong>하여 온디맨드 아키텍처로 단순화했습니다.
+              </p>
+              
+              <div class="spec-metrics-pills">
+                <div class="metric-pill">
+                  <span class="metric-num">670 → 0</span>
+                  <span class="metric-label">Calls Cut</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="metric-num">12 Lanes</span>
+                  <span class="metric-label">MCP Agents</span>
+                </div>
+                <div class="metric-pill">
+                  <span class="metric-num">On-Demand</span>
+                  <span class="metric-label">Architecture</span>
+                </div>
+              </div>
+
+              <div class="spec-col-footer">
+                <button class="bento-cta-btn" onclick="openCaseModal(1)">
+                  Read Architecture Spec →
+                </button>
+              </div>
+            </div>
+          </article>
         </div>
 
         <!-- PART B: ALL 8 PRODUCTS INTERACTIVE ARCHIVE MATRIX -->
@@ -3145,8 +3649,8 @@
             <!-- Interactive Domain Filter Pills -->
             <div class="filter-pill-bar" id="archiveFilterBar">
               <button class="filter-pill active" data-filter="all">All (8)</button>
-              <button class="filter-pill" data-filter="b2b">Enterprise B2B (3)</button>
-              <button class="filter-pill" data-filter="ai">AI & Systems (2)</button>
+              <button class="filter-pill" data-filter="b2b">Commercial B2B (5)</button>
+              <button class="filter-pill" data-filter="ai">Internal AI Lab (2)</button>
               <button class="filter-pill" data-filter="mobile">Mobile & IoT (3)</button>
             </div>
           </div>
