@@ -6,8 +6,10 @@
   <title>윤찬민 (Min Yoon) — Product Manager</title>
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111111'/%3E%3Cpath d='M10 9l6 7.5L22 9h2.5L17.5 17.5V23h-3v-5.5L7.5 9H10z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://l-yoon.github.io/">
   <meta name="description" content="윤찬민 (Min Yoon) — Product Manager crafting systems with code-level discipline. Scope defense, route audits, system unlearning.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://l-yoon.github.io/">
   <meta property="og:title" content="윤찬민 (Min Yoon) — Product Manager">
   <meta property="og:description" content="숫자와 로그로 증명하는 테크니컬 프로덕트 매니저. 159개 라우트 감사, 68% 계약 범위 방어, 670회 호출 언러닝.">
   <meta property="og:site_name" content="Min Yoon Portfolio">
@@ -3188,13 +3190,14 @@
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
-      .contact-title {
-        font-size: 16pt !important;
+      .contact-heading {
+        font-size: 14pt !important;
+        line-height: 1.2 !important;
         margin-bottom: 4pt !important;
       }
-      .contact-lead {
-        font-size: 8pt !important;
-        margin-bottom: 10pt !important;
+      .contact-desc {
+        font-size: 7.5pt !important;
+        margin-bottom: 8pt !important;
       }
       .contact-grid {
         display: grid !important;
@@ -3407,10 +3410,10 @@
                     <h4 class="exp-company">㈜디비컨설팅 (Divii Consulting)</h4>
                     <span class="exp-period">2025.07 — 현재 (1년 2개월)</span>
                   </div>
-                  <div class="exp-role">Sole Product Manager · 9개 엔터프라이즈 B2B &amp; SaaS 총괄</div>
+                  <div class="exp-role">Sole Product Manager · 8개 엔터프라이즈 B2B &amp; SaaS 총괄</div>
                   <div class="exp-desc-points">
                     <p class="exp-desc-bullet">
-                      <strong>• Spec-to-Release 총괄:</strong> 9개 B2B/AI/SaaS 프로덕트의 요구사항 정의(PRD), 데이터 스키마 정합성 검증, QA 게이트 및 프로덕션 배포 전담.
+                      <strong>• Spec-to-Release 총괄:</strong> 8개 B2B/AI/SaaS 프로덕트의 요구사항 정의(PRD), 데이터 스키마 정합성 검증, QA 게이트 및 프로덕션 배포 전담.
                     </p>
                     <p class="exp-desc-bullet">
                       <strong>• 100% 글로벌 영어 스프린트:</strong> 영어권 2년 수학 기반으로 다국적(글로벌) 개발 파트너사와 영어로 일일 스크럼, Jira 티켓 발행, 기술 스펙 싱크 전담 리드.
@@ -3480,8 +3483,6 @@
         <span class="marquee-sep">✦</span>
       </div>
     </div>
-  </div>
-    </div>
 
     <!-- ─── 02 / SELECTED WORKS & SYSTEMS ARCHIVE (BENTO & ALL-PROJECTS MATRIX) ─── -->
     <section class="works-archive-section" id="work">
@@ -3492,7 +3493,7 @@
           <div class="section-tag">02 / Selected Works & Systems Archive</div>
           <div class="section-heading-wrap">
             <h2>Products, Platforms & Systems Delivered.</h2>
-            <p>모호한 비즈니스 갈등을 기계적 명세와 시스템 아키텍처로 해결한 8개 프로덕트의 실전 기록입니다.</p>
+            <p>모호한 비즈니스 갈등을 기계적 명세와 시스템 아키텍처로 해결한 8개 엔터프라이즈 프로덕트와 1개 시스템 랩(총 9개)의 실전 기록입니다.</p>
           </div>
         </div>
 
@@ -5131,6 +5132,8 @@
         role: "Sole PM · 대용량 트래픽 스팸 필터링 룰 엔진 및 대시보드 기획 (진행 중)",
         details: `
           <div class="evople-wrapper">
+            
+            <!-- Pillar 1: Comparative Alignment -->
             <div class="evople-section-title">01 / Comparative Alignment · 갈등과 해결 대조</div>
             <div class="evople-split-grid">
               <div class="evople-box danger-tint">
@@ -5157,16 +5160,84 @@
               </div>
             </div>
             
-            <div class="evople-section-title">02 / Technical Architecture · 시스템 구성 및 상태</div>
-            <div class="evople-spec-card">
-              <div class="evople-spec-head">
-                <span class="spec-category-badge client">ENTERPRISE SMS SECURITY</span>
-                <span class="spec-timeline">2026.08 — CURRENT · IN PROGRESS</span>
+            <!-- Pillar 2: Technical Pipeline -->
+            <div class="evople-section-title">02 / Technical Pipeline · 4단계 인라인 검증 파이프라인</div>
+            <div class="pipeline-flow-diagram">
+              <div class="pipeline-nodes-row">
+                <div class="pipeline-node">
+                  <div class="pipeline-node-step">STEP 01</div>
+                  <div class="pipeline-node-name">Memory Hash Pass</div>
+                  <div class="pipeline-node-desc">블랙/화이트리스트 및 미등록 번호 즉시 대조 (&lt;1ms)</div>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-node highlight">
+                  <div class="pipeline-node-step">STEP 02</div>
+                  <div class="pipeline-node-name">Rate Limit Window</div>
+                  <div class="pipeline-node-desc">동일 발신자·유사 템플릿 초당 고주파 발송 탐지</div>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-node highlight">
+                  <div class="pipeline-node-step">STEP 03</div>
+                  <div class="pipeline-node-name">Pattern Scoring</div>
+                  <div class="pipeline-node-desc">스미싱 키워드 변형·단축 URL 가중치 채점</div>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-node">
+                  <div class="pipeline-node-step">STEP 04</div>
+                  <div class="pipeline-node-name">Routing & Isolation</div>
+                  <div class="pipeline-node-desc">정상 발송 vs 오차단 방지 격리 큐 vs 即시 드롭</div>
+                </div>
               </div>
-              <p class="evople-spec-summary">
-                초당 대규모 발송량을 처리하는 엔터프라이즈 SMS 게이트웨이와 연동하여, 인라인 스팸 탐지 룰 엔진 및 관리자 정책 제어 대시보드를 총괄 기획하고 있습니다.
-              </p>
             </div>
+
+            <!-- Pillar 3: Rule Engine Taxonomy -->
+            <div class="evople-section-title">03 / Rule Engine Taxonomy · 탐지 룰 분류 및 정책 매핑</div>
+            <div class="taxonomy-block">
+              <div class="taxonomy-chips-row">
+                <span class="taxonomy-chip"><strong>[인라인 메모리]</strong> 블랙리스트 발신번호 및 악성 URL 즉시 차단</span>
+                <span class="taxonomy-chip"><strong>[패턴 스코어링]</strong> 특수문자 변형 피싱 키워드 가중치 산출</span>
+                <span class="taxonomy-chip"><strong>[격리 큐]</strong> 정상 알림톡/인증번호 오차단 방지 사전 승인 풀</span>
+                <span class="taxonomy-chip"><strong>[어드민 대시보드]</strong> 실시간 차단 모니터링 &amp; 룰 핫픽스 배포</span>
+              </div>
+            </div>
+
+            <!-- Pillar 4: Operational SLA & QA Governance -->
+            <div class="evople-section-title">04 / Operational SLA &amp; Governance · 성능 지표 및 운영 거버넌스</div>
+            <table class="qa-gate-table">
+              <thead>
+                <tr>
+                  <th>검증 영역</th>
+                  <th>목표 지표</th>
+                  <th>검증 메커니즘</th>
+                  <th>진행 상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>추가 지연시간 (Latency)</strong></td>
+                  <td>&lt; 10ms 이내</td>
+                  <td>메모리 인라인 캐시 대조</td>
+                  <td><span class="qa-status-pill pass">OPTIMIZED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>오차단 방지 (False Positive)</strong></td>
+                  <td>0.01% 미만 격리</td>
+                  <td>화이트리스트 사전 승인 큐</td>
+                  <td><span class="qa-status-pill shipped">RULE DEFINED</span></td>
+                </tr>
+                <tr>
+                  <td><strong>신규 정책 배포 속도</strong></td>
+                  <td>1분 이내 전사 전파</td>
+                  <td>Redis Pub/Sub 실시간 동기화</td>
+                  <td><span class="qa-status-pill pass">SPEC CONFIRMED</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="modal-callout">
+              <strong>PM 역할 및 현재 진행 상태:</strong> 대용량 메시징 분산 인프라 및 메모리 DB 구현은 엔지니어링 파트너사가 담당하고, 본인은 실시간 스팸 탐지 룰 분류 체계, 정상 비즈니스 메시지 오차단 예외 격리 정책, 관리자 제어 대시보드 PRD 집필 및 고객사 요구사항 조율을 총괄하고 있습니다.
+            </div>
+
           </div>
         `
       }
