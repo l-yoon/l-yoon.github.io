@@ -3513,36 +3513,8 @@
                 <div class="mockup-url-bar">lms.enterprise.internal/curriculum-v2</div>
                 <div class="mockup-tag">SPEC AUDITED</div>
               </div>
-              <div class="mockup-screen-canvas lms-screen">
-                <div class="mockup-ui-header">
-                  <div class="mockup-ui-brand"></div>
-                  <div class="mockup-ui-nav-pills">
-                    <span class="nav-pill active">Curriculum</span>
-                    <span class="nav-pill">Routes (159)</span>
-                    <span class="nav-pill">QA Gates</span>
-                  </div>
-                </div>
-                <div class="mockup-ui-grid">
-                  <div class="mockup-ui-card scope-defense">
-                    <div class="mockup-badge">CR ANALYSIS (60 TOTAL)</div>
-                    <div class="mockup-chart-bars">
-                      <div class="bar bar-a" style="width: 27%;"></div>
-                      <div class="bar bar-b" style="width: 68.3%;"></div>
-                    </div>
-                    <div class="mockup-chart-legend">
-                      <span>A 16 (무상)</span>
-                      <strong class="highlight">B 41 (68.3% 방어)</strong>
-                    </div>
-                  </div>
-                  <div class="mockup-ui-card routes-audit">
-                    <div class="mockup-badge">AST ROUTE MAPPER</div>
-                    <div class="mockup-code-lines">
-                      <code>&gt; GET /api/v2/lecture [OK]</code>
-                      <code>&gt; 19 UNLISTED SURFACES</code>
-                      <code>&gt; 101/142 DEFECTS CLOSED</code>
-                    </div>
-                  </div>
-                </div>
+              <div class="mockup-screen-canvas lms-screen" style="padding: 0; overflow: hidden; background: #ffffff; position: relative;">
+                <img src="assets/Flagship_lms.png" alt="EduTech LMS Production Admin Console" style="width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block;">
               </div>
             </div>
 
@@ -4131,6 +4103,7 @@
             <span class="placeholder-hint">Recommended: 1600 × 900px</span>
           </div>
         </div>
+        <div class="modal-photo-caption" id="modalPhotoCaption" style="display:none; font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); margin-top:-16px; margin-bottom:24px; padding:6px 12px; background:#f8fafc; border-left:2px solid var(--accent); border-radius:0 4px 4px 0; line-height:1.5;"></div>
         <div id="modalTextBody"></div>
       </div>
     </div>
@@ -4158,6 +4131,8 @@
         title: "대형 어학교육 플랫폼 전면 리뉴얼 & Spec-to-Release",
         industry: "에듀테크 (어학교육 플랫폼)",
         role: "신규 PM 및 QA·릴리즈 총괄 (13개월)",
+        image: "assets/Flagship_lms.png",
+        imageCaption: "실제 프로덕션 QA 릴리즈 콘솔 — 5대 역할별 권한 분기 및 출결/주문/학사 관리 실서피스 (고객사 마스킹 완료)",
         details: `
           <div class="evople-wrapper">
             
@@ -4764,9 +4739,11 @@
       },
       {
         slug: "case-6",
-        title: "글로벌 뷰티 SaaS 3개 권한 체계 & 14개 RDB 엔티티 정합성 설계",
-        industry: "Global Beauty SaaS Platform (B2B 에셋 & 브랜드 관리)",
-        role: "Technical PM · 설계 검증 & 스키마 정합성 보증",
+        title: "글로벌 뷰티 SaaS / EU 인증 규제 준수 & 디지털 제품 여권(DPP) 플랫폼",
+        industry: "Global Beauty SaaS Platform (EU 규제 준수 & DPP)",
+        role: "Technical PM · 13종 서류 검증 파이프라인 & 3대 권한 스키마 정합성 보증",
+        image: "assets/Modal_beauty_saas.png",
+        imageCaption: "OMNICOS v3.1 EU 화장품 규제 준수 & DPP(디지털 제품 여권) 플랫폼 — 13종 서류 업로드 및 적합성 검증 와이어프레임",
         details: `
           <div class="evople-wrapper">
             
@@ -5123,11 +5100,15 @@
       },
       {
         slug: "case-9",
-        title: "대기업 엔터프라이즈 SMS 스팸 실시간 차단 시스템",
-        industry: "Enterprise Security & Telecom (국내 대기업 SMS 인프라)",
-        role: "Sole PM · 대용량 트래픽 스팸 필터링 룰 엔진 및 대시보드 기획 (진행 중)",
+        title: "대기업 엔터프라이즈 SMS 스팸 실시간 차단 시스템 (PRD 아키텍처 제안)",
+        industry: "Enterprise Security & Telecom (통신사 SMS 인프라)",
+        role: "Technical PM · 대용량 트래픽 스팸 필터링 룰 엔진 및 PRD 아키텍처 개념 제안 (Concept Proposal)",
         details: `
           <div class="evople-wrapper">
+
+            <div class="modal-callout" style="border-left-color: #f59e0b; background: #fffbeb; margin-bottom: 24px;">
+              <strong>프로젝트 상태 및 진실성(Candidate Integrity) 보증:</strong> 본 프로젝트는 계약 전 기술 제안 및 PRD 아키텍처 기획 단계로 수행된 <strong>개념 제안(Concept Proposal)</strong>이며, 라이브 프로덕션 릴리즈가 아닌 사전 아키텍처 제안서 산출물입니다.
+            </div>
             
             <!-- Pillar 1: Comparative Alignment -->
             <div class="evople-section-title">01 / Comparative Alignment · 갈등과 해결 대조</div>
@@ -5252,6 +5233,29 @@
       modalTitle.textContent = data.title;
       modalSubtitle.textContent = `${data.industry} · ${data.role}`;
       document.getElementById("modalTextBody").innerHTML = data.details;
+
+      const modalImg = document.querySelector("#caseModal .modal-photo-slot img");
+      const captionEl = document.getElementById("modalPhotoCaption");
+      if (modalImg) {
+        if (data.image) {
+          modalImg.src = data.image;
+          modalImg.alt = data.title;
+          modalImg.classList.add("loaded");
+        } else {
+          modalImg.removeAttribute("src");
+          modalImg.classList.remove("loaded");
+        }
+      }
+      if (captionEl) {
+        if (data.imageCaption) {
+          captionEl.textContent = data.imageCaption;
+          captionEl.style.display = "block";
+        } else {
+          captionEl.textContent = "";
+          captionEl.style.display = "none";
+        }
+      }
+
       caseModal.classList.add("open");
       document.body.style.overflow = "hidden";
 
@@ -5263,6 +5267,16 @@
     function closeCaseModal(updateHash = true) {
       caseModal.classList.remove("open");
       document.body.style.overflow = "";
+      const modalImg = document.querySelector("#caseModal .modal-photo-slot img");
+      const captionEl = document.getElementById("modalPhotoCaption");
+      if (modalImg) {
+        modalImg.removeAttribute("src");
+        modalImg.classList.remove("loaded");
+      }
+      if (captionEl) {
+        captionEl.textContent = "";
+        captionEl.style.display = "none";
+      }
       if (updateHash && window.location.hash.startsWith("#case-")) {
         history.pushState(null, "", window.location.pathname + window.location.search);
       }
