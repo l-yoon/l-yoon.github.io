@@ -3556,60 +3556,74 @@ body {
   text-overflow: ellipsis;
 }
 
-/* ─── 4. ACTIVE PROJECT LABEL & SOUND TOGGLE (MIDDLE LEFT) ─── */
-.theo-ring-active-indicator {
+/* ─── 4. ACTIVE PROJECT LABEL & SOUND TOGGLE (BILATERAL THEO ANCHORS) ─── */
+.theo-active-project-anchor {
   position: absolute;
-  left: 32px;
+  left: 0;
   top: 50%;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.theo-wave-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  background: var(--theo-ink);
+  transform-origin: left center;
+  transition: width 0.15s ease, opacity 0.15s ease;
+}
+
+.theo-active-title-wrap {
+  position: absolute;
+  left: 56px;
+  top: 0;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 20px;
-  z-index: 40;
-  pointer-events: auto;
+  white-space: nowrap;
 }
 
 .theo-active-title {
-  font-family: var(--theo-font-sans);
-  font-size: 14px;
-  font-weight: 600;
   color: var(--theo-ink);
-  letter-spacing: -0.01em;
+  font-family: var(--theo-font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
 }
 
-.theo-sound-toggle {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid var(--theo-border-subtle);
-  border-radius: 100px;
-  padding: 5px 12px;
-  font-family: var(--theo-font-mono);
-  font-size: 10.5px;
-  font-weight: 600;
-  color: var(--theo-ink);
+.theo-sound-toggle-btn {
+  font-family: var(--theo-font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: absolute;
+  z-index: 40;
+  padding: 0;
+  border: 0;
+  background: none;
   cursor: pointer;
+  color: var(--theo-ink);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.15s ease;
+  gap: 8px;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.15s ease, color 0.15s ease;
 }
 
-.theo-sound-toggle:hover {
-  background: #ffffff;
-  border-color: #bbb;
+.theo-sound-toggle-btn:hover {
+  opacity: 0.7;
 }
 
-.theo-sound-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #9ca3af;
-  display: inline-block;
-  transition: background 0.2s ease;
-}
-
-.theo-sound-toggle.active .theo-sound-dot {
-  background: var(--theo-signal);
-  box-shadow: 0 0 6px var(--theo-signal);
+.theo-sound-toggle-btn.active {
+  color: var(--theo-signal);
 }
 
 /* ─── 5. BOTTOM HERO INDEX BAR (4-COLUMN ROW) ─── */
@@ -3754,10 +3768,22 @@ body {
     width: auto;
     max-width: none;
   }
-  .theo-ring-active-indicator {
-    left: 20px;
-    bottom: 64px;
+  .theo-active-project-anchor {
+    left: 0;
     top: auto;
+    bottom: 64px;
+    transform: none;
+  }
+  .theo-active-title-wrap {
+    left: 20px;
+  }
+  .theo-wave-line {
+    display: none;
+  }
+  .theo-sound-toggle-btn {
+    right: 20px;
+    top: auto;
+    bottom: 64px;
     transform: none;
   }
   .theo-hero-index {
@@ -3843,14 +3869,30 @@ body {
           <!-- 18 Cards populated via JavaScript -->
         </div>
 
-        <!-- Middle Left Active Title & Tactile Sound Toggle -->
-        <div class="theo-ring-active-indicator">
-          <span class="theo-active-title" id="theoActiveTitle">Toss Payments Settlement Engine</span>
-          <button type="button" class="theo-sound-toggle" id="theoSoundBtn" onclick="toggleTheoSound()">
-            <span class="theo-sound-dot"></span>
-            <span id="theoSoundLabel">SOUND OFF</span>
-          </button>
+        <!-- Middle Left Active Title with Theo Waveform Bars -->
+        <div class="theo-active-project-anchor">
+          <div class="theo-wave-line" style="width: 13px; transform: translateY(-45px); opacity: 0.1;"></div>
+          <div class="theo-wave-line" style="width: 17px; transform: translateY(-36px); opacity: 0.25;"></div>
+          <div class="theo-wave-line" style="width: 23px; transform: translateY(-27px); opacity: 0.55;"></div>
+          <div class="theo-wave-line" style="width: 30px; transform: translateY(-18px); opacity: 0.80;"></div>
+          <div class="theo-wave-line" style="width: 37px; transform: translateY(-9px); opacity: 0.95;"></div>
+          <div class="theo-wave-line" style="width: 44px; transform: translateY(0px); opacity: 1;"></div>
+          <div class="theo-wave-line" style="width: 37px; transform: translateY(9px); opacity: 0.95;"></div>
+          <div class="theo-wave-line" style="width: 30px; transform: translateY(18px); opacity: 0.80;"></div>
+          <div class="theo-wave-line" style="width: 23px; transform: translateY(27px); opacity: 0.55;"></div>
+          <div class="theo-active-title-wrap">
+            <span class="theo-active-title" id="theoActiveTitle">토스페이먼츠 코어 결제 & 대사 정산 플랫폼</span>
+          </div>
         </div>
+
+        <!-- Middle Right Theo Nolan Sound Toggle Button -->
+        <button type="button" class="theo-sound-toggle-btn" id="theoSoundBtn" onclick="toggleTheoSound()" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z" fill="currentColor"></path>
+            <path id="theoSoundWavePath" d="M10.5 6l3 4M13.5 6l-3 4"></path>
+          </svg>
+          <span id="theoSoundLabel">SOUND OFF</span>
+        </button>
       </div>
 
       <!-- 3. Bottom Hero Index Bar (Swiss 4-Column Row) -->
@@ -6070,9 +6112,14 @@ body {
         soundEnabled = !soundEnabled;
         if (soundBtn) {
           soundBtn.classList.toggle("active", soundEnabled);
+          soundBtn.setAttribute("aria-pressed", soundEnabled ? "true" : "false");
         }
         if (soundLabel) {
           soundLabel.textContent = soundEnabled ? "SOUND ON" : "SOUND OFF";
+        }
+        const wavePath = document.getElementById("theoSoundWavePath");
+        if (wavePath) {
+          wavePath.setAttribute("d", soundEnabled ? "M11 5a4.5 4.5 0 010 6M13.5 3a8 8 0 010 10" : "M10.5 6l3 4M13.5 6l-3 4");
         }
         if (soundEnabled) {
           playDialClick();
@@ -6217,6 +6264,17 @@ body {
         // Update Active Indicator Label
         if (activeTitle && PROJECTS[activeIdx]) {
           activeTitle.textContent = PROJECTS[activeIdx].title;
+        }
+
+        // Modulate Waveform Bars on Rotation
+        const waveBars = document.querySelectorAll(".theo-wave-line");
+        if (waveBars.length === 9) {
+          const baseW = [13, 17, 23, 30, 37, 44, 37, 30, 23];
+          const jitter = Math.sin(currentAngle * 6) * 5;
+          for (let w = 0; w < 9; w++) {
+            const factor = 1 - Math.abs(w - 4) / 5;
+            waveBars[w].style.width = Math.max(6, Math.round(baseW[w] + jitter * factor)) + "px";
+          }
         }
 
         // Trigger Audio Tick on Slot Crossing
