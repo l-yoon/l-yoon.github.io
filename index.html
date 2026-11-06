@@ -3280,8 +3280,7 @@ body {
 }
 
 .theo-nav-bar {
-  max-width: 1376px;
-  margin: 0 auto;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
@@ -3572,11 +3571,10 @@ body {
 
 .theo-active-title {
   font-family: var(--theo-font-sans);
-  font-size: 15px;
-  font-weight: 500;
-  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--theo-ink);
   letter-spacing: -0.01em;
-  mix-blend-mode: difference;
 }
 
 .theo-sound-toggle {
@@ -3621,17 +3619,16 @@ body {
   left: 32px;
   right: 32px;
   z-index: 40;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   align-items: center;
   mix-blend-mode: difference;
   pointer-events: none;
   box-sizing: border-box;
 }
 
-.theo-index-hint,
-.theo-index-services,
-.theo-index-meta {
+.theo-index-col {
   font-family: var(--theo-font-sans);
   font-size: 12px;
   font-weight: 500;
@@ -3643,6 +3640,10 @@ body {
 .theo-index-hint {
   cursor: pointer;
   pointer-events: auto;
+}
+
+.theo-index-meta {
+  text-align: right;
 }
 
 /* ─── 6. WORK MODAL DRAWER (ALL 9 PROJECTS CATALOGUE) ─── */
@@ -3763,8 +3764,10 @@ body {
     left: 20px;
     right: 20px;
     bottom: 20px;
+    grid-template-columns: 1fr auto;
   }
-  .theo-index-services {
+  .theo-index-services,
+  .theo-index-empty {
     display: none;
   }
   .theo-ring-card {
@@ -3850,11 +3853,12 @@ body {
         </div>
       </div>
 
-      <!-- 3. Bottom Hero Index Bar -->
+      <!-- 3. Bottom Hero Index Bar (Swiss 4-Column Row) -->
       <div class="theo-hero-index">
-        <div class="theo-index-hint" onclick="openTheoWorkCatalogue(event)">[ Drag / Scroll to explore · Click WORK for index ]</div>
-        <div class="theo-index-services">AI Agentic Systems · Fintech Rails · Enterprise 0→1</div>
-        <div class="theo-index-meta">Designed & Engineered by Min Yoon © 2026</div>
+        <div class="theo-index-col theo-index-hint" onclick="openTheoWorkCatalogue(event)">[ Drag / Scroll to explore · Click WORK for index ]</div>
+        <div class="theo-index-col theo-index-services">AI Agentic Systems · Fintech Rails · Enterprise 0→1</div>
+        <div class="theo-index-col theo-index-empty"></div>
+        <div class="theo-index-col theo-index-meta">Designed & Engineered by Min Yoon © 2026</div>
       </div>
     </section>
 
@@ -6163,15 +6167,19 @@ body {
         const vh = window.innerHeight;
         const isMobile = vw < 900;
 
-        // Origin at center Y
-        const originX = isMobile ? 0 : -14.76;
+        // Origin at center Y + dynamic widescreen shift (Theo Nolan Framer formula)
+        let originX = -14.765;
+        if (isMobile) {
+          originX = 0;
+        } else if (vw > 1440) {
+          originX = -14.765 + 0.62 * (vw - 1440);
+        }
         const originY = vh * 0.5;
 
-        // Radius & Center (exact fitted circle from live site: R ~ 1060px, center = -348, -140)
-        const scale = isMobile ? (vw / 900) * 0.95 : Math.min(1.2, vw / 1440);
-        const R = (isMobile ? 620 : 1060) * scale;
-        const cx = (isMobile ? -160 : -348) * scale;
-        const cy = (isMobile ? -80 : -140) * scale;
+        // Radius & Center (exact fitted circle from live site: R = 1060px, center = -348, -140)
+        const R = isMobile ? 620 * (vw / 900) : 1060;
+        const cx = isMobile ? -160 * (vw / 900) : -348;
+        const cy = isMobile ? -80 * (vw / 900) : -140;
 
         let maxFrontX = -999999;
         let activeIdx = 0;
@@ -6191,10 +6199,10 @@ body {
 
           // Culling / Opacity: cards fade when on the back half of the ring
           let opacity = 0;
-          if (x > 180 * scale) {
+          if (x > 180) {
             opacity = 1;
-          } else if (x > -100 * scale) {
-            opacity = (x + 100 * scale) / (280 * scale);
+          } else if (x > -100) {
+            opacity = (x + 100) / 280;
           } else {
             opacity = 0;
           }
