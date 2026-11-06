@@ -3247,13 +3247,17 @@
   --theo-font-mono: 'Inter', monospace;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   background-color: var(--theo-white);
   color: var(--theo-ink);
   font-family: var(--theo-font-sans);
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
