@@ -3234,7 +3234,7 @@
       }    }
 
   
-    /* ─── THEO NOLAN MINIMALIST HUD & 3D RING STYLING ─── */
+    /* ─── THEO NOLAN V2: SPLIT-SCREEN & VERTICAL 3D WHEEL STYLING ─── */
     :root {
       --theo-bg: #ffffff;
       --theo-surface: #fbfbfb;
@@ -3253,11 +3253,11 @@
       position: sticky;
       top: 0;
       z-index: 990;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--theo-border);
-      padding: 14px 28px;
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -3297,7 +3297,7 @@
     .theo-hud-nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 24px;
     }
     .theo-hud-link {
       font-size: 12px;
@@ -3317,7 +3317,7 @@
       font-family: var(--theo-font-mono);
       background: var(--theo-ink);
       color: #ffffff !important;
-      padding: 5px 11px;
+      padding: 5px 12px;
       border-radius: 5px;
       text-decoration: none;
       letter-spacing: 0.02em;
@@ -3356,7 +3356,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 10px;
+      padding: 5px 11px;
       border-radius: 100px;
       background: #f5f5f5;
       border: 1px solid #e5e5e5;
@@ -3383,21 +3383,31 @@
       box-shadow: 0 0 6px rgba(229, 72, 45, 0.6);
     }
 
-    /* ─── HERO STAGE & 3D RING ─── */
+    /* ─── V2 HERO STAGE: SPLIT-SCREEN LAYOUT ─── */
     .theo-hero-section {
       position: relative;
       background: #ffffff;
-      padding: 36px 0 24px;
+      padding: 40px 0 32px;
       overflow: hidden;
       border-bottom: 1px solid var(--theo-border);
     }
-    .theo-hero-header {
-      max-width: 1200px;
-      margin: 0 auto 28px;
-      padding: 0 28px;
+    .theo-hero-split-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 36px;
+      display: grid;
+      grid-template-columns: 45% 55%;
+      gap: 40px;
+      align-items: center;
+      min-height: 600px;
+    }
+
+    /* Left Narrative & Active Project HUD */
+    .theo-hero-left {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      justify-content: center;
+      z-index: 10;
     }
     .theo-hero-eyebrow {
       display: inline-flex;
@@ -3409,6 +3419,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--theo-signal);
+      margin-bottom: 12px;
     }
     .theo-hero-eyebrow::before {
       content: "";
@@ -3420,45 +3431,151 @@
     }
     .theo-hero-title {
       font-family: var(--theo-font-sans);
-      font-size: clamp(26px, 3.8vw, 42px);
+      font-size: clamp(28px, 3.2vw, 44px);
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       line-height: 1.15;
       color: var(--theo-ink);
-      max-width: 980px;
+      margin-bottom: 14px;
     }
     .theo-hero-desc {
-      font-size: 15px;
+      font-size: 14.5px;
       line-height: 1.6;
       color: var(--theo-muted);
-      max-width: 860px;
+      margin-bottom: 22px;
     }
 
-    /* 3D Ring Viewport */
-    .theo-ring-container {
+    /* Pinned Active Project Indicator */
+    .theo-pinned-project {
+      background: #fbfbfb;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .theo-pinned-project:hover {
+      background: #ffffff;
+      border-color: var(--theo-signal);
+      box-shadow: 0 10px 28px rgba(229, 72, 45, 0.12);
+    }
+    .pinned-slot-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pinned-slot {
+      font-family: var(--theo-font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--theo-signal);
+      letter-spacing: 0.04em;
+    }
+    .pinned-badge {
+      font-family: var(--theo-font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .pinned-title {
+      font-family: var(--theo-font-sans);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--theo-ink);
+      line-height: 1.3;
+    }
+    .pinned-metric {
+      font-size: 12px;
+      color: #444;
+      font-weight: 500;
+    }
+    .pinned-cta {
+      font-family: var(--theo-font-mono);
+      font-size: 10.5px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* Compact 4-Metric Grid */
+    .theo-hero-metrics-compact {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #eeeeee;
+    }
+    .compact-metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .compact-metric-val {
+      font-family: var(--theo-font-sans);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--theo-ink);
+      letter-spacing: -0.02em;
+    }
+    .compact-metric-lbl {
+      font-family: var(--theo-font-mono);
+      font-size: 9.5px;
+      color: #888;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .theo-scroll-hint {
+      font-family: var(--theo-font-mono);
+      font-size: 11px;
+      color: #999;
+      margin-top: 16px;
+    }
+    .hint-bracket {
+      color: var(--theo-signal);
+      font-weight: 700;
+    }
+
+    /* Right Column: Vertically Rolling 3D Wheel Stage */
+    .theo-hero-right {
       position: relative;
       width: 100%;
-      height: 480px;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theo-wheel-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       isolation: isolate;
       cursor: grab;
       user-select: none;
-      background: radial-gradient(circle at 50% 60%, rgba(240, 240, 245, 0.45) 0%, transparent 70%);
+      background: radial-gradient(circle at 60% 50%, rgba(240, 240, 248, 0.5) 0%, transparent 68%);
     }
-    .theo-ring-container:active {
+    .theo-wheel-container:active {
       cursor: grabbing;
     }
-    .theo-ring-viewport {
+    .theo-wheel-viewport {
       width: 100%;
       height: 100%;
       perspective: 1400px;
-      perspective-origin: 50% 45%;
+      perspective-origin: 50% 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
     }
-    .theo-ring-stage {
+    .theo-wheel-stage {
       position: absolute;
       width: 0;
       height: 0;
@@ -3466,20 +3583,20 @@
       will-change: transform;
     }
 
-    /* 3D Card Items */
-    .theo-ring-card {
+    /* 3D Wheel Cards: Landscape Mockup Architecture */
+    .theo-wheel-card {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 240px;
-      height: 320px;
-      margin-left: -120px;
-      margin-top: -160px;
-      border-radius: 16px;
+      width: 380px;
+      height: 246px;
+      margin-left: -190px;
+      margin-top: -123px;
+      border-radius: 14px;
       background: #ffffff;
-      border: 1px solid #e8e8e8;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04);
-      padding: 18px;
+      border: 1px solid #e6e6e6;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -3489,13 +3606,13 @@
       cursor: pointer;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .theo-ring-card:hover {
+    .theo-wheel-card:hover {
       border-color: var(--theo-signal);
-      box-shadow: 0 16px 38px rgba(229, 72, 45, 0.16), 0 2px 6px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 24px 54px rgba(229, 72, 45, 0.22), 0 4px 10px rgba(0, 0, 0, 0.06);
     }
     .theo-card-top {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
     }
     .theo-card-slot {
@@ -3509,7 +3626,7 @@
       font-family: var(--theo-font-mono);
       font-size: 10px;
       font-weight: 600;
-      padding: 3px 7px;
+      padding: 2px 7px;
       border-radius: 4px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -3520,178 +3637,178 @@
     .badge-completed { background: #f5f5f5; color: #595959; border: 1px solid #d9d9d9; }
 
     .theo-card-mid {
-      margin: 12px 0;
+      margin: 4px 0;
     }
     .theo-card-category {
       font-family: var(--theo-font-mono);
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 600;
       color: #8c8c8c;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .theo-card-title {
       font-family: var(--theo-font-sans);
       font-size: 16px;
       font-weight: 700;
       color: var(--theo-ink);
-      line-height: 1.3;
+      line-height: 1.25;
       letter-spacing: -0.01em;
-    }
-
-    .theo-card-graphic {
-      height: 72px;
-      width: 100%;
-      border-radius: 8px;
-      background: #f7f7f9;
-      border: 1px dashed #e2e2e8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 8px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .theo-card-graphic svg {
-      width: 100%;
-      height: 100%;
-      opacity: 0.75;
-    }
-
-    .theo-card-bottom {
-      border-top: 1px solid #f0f0f0;
-      padding-top: 10px;
-    }
-    .theo-card-metric {
-      font-size: 12px;
-      font-weight: 600;
-      color: #262626;
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .theo-card-submetric {
-      font-size: 11px;
-      color: #8c8c8c;
-      margin-top: 2px;
-    }
-
-    /* Ring Controls / HUD Overlay */
-    .theo-ring-hud {
-      position: absolute;
-      bottom: 14px;
-      left: 28px;
-      right: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-    .theo-ring-active-pill {
-      pointer-events: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 6px 14px;
-      border-radius: 100px;
-      border: 1px solid #e5e5e5;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    }
-    .active-pill-slot {
-      font-family: var(--theo-font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--theo-signal);
-    }
-    .active-pill-name {
-      font-family: var(--theo-font-sans);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--theo-ink);
-      max-width: 320px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .active-pill-hint {
-      font-size: 11px;
-      color: #888;
-      font-family: var(--theo-font-mono);
+
+    /* High-Contrast Dark Architectural Mockup Frame */
+    .theo-card-dark-frame {
+      height: 90px;
+      width: 100%;
+      border-radius: 8px;
+      background: #0d0f17;
+      border: 1px solid #202436;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 6px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
     }
-    .theo-ring-instructions {
-      font-family: var(--theo-font-mono);
-      font-size: 11px;
-      color: #999;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(8px);
-      padding: 5px 12px;
-      border-radius: 100px;
-      border: 1px solid #ebebeb;
+    .theo-card-dark-frame svg {
+      width: 100%;
+      height: 100%;
     }
 
-      @media print {
-        .theo-hud,
-        .theo-ring-container,
-        .theo-ring-hud,
-        .theo-ring-instructions {
-          display: none !important;
-        }
-        .theo-hero-section {
-          padding: 0 0 10pt 0 !important;
-          border-bottom: 1.5pt solid #111111 !important;
-          margin-bottom: 10pt !important;
-          min-height: auto !important;
-          height: auto !important;
-        }
-        .theo-hero-header {
-          padding: 0 !important;
-          margin-bottom: 8pt !important;
-        }
-        .theo-hero-title {
-          font-size: 18pt !important;
-          line-height: 1.15 !important;
-          margin-bottom: 3pt !important;
-          color: #000000 !important;
-        }
-        .theo-hero-desc {
-          font-size: 8.5pt !important;
-          line-height: 1.35 !important;
-          color: #333333 !important;
-          margin-bottom: 6pt !important;
-        }
+    .theo-card-bottom {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 8px;
+    }
+    .theo-card-metric {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #262626;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .theo-card-submetric {
+      font-size: 10.5px;
+      color: #8c8c8c;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 1024px) {
+      .theo-hero-split-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        min-height: auto;
       }
-      @media (max-width: 768px) {
-        .theo-hud { padding: 10px 14px; }
-        .theo-hud-role, .theo-hud-loc, .theo-hud-divider { display: none; }
-        .theo-hud-nav { gap: 10px; }
-        .theo-hud-link { font-size: 11px; }
-        .theo-hud-pdf-btn { padding: 4px 8px; font-size: 10px; }
-        .theo-hud-sound-btn { padding: 4px 8px; font-size: 10px; }
-        .theo-hero-header { padding: 0 16px; margin-bottom: 16px; }
-        .theo-hero-title { font-size: 26px; }
-        .theo-hero-desc { font-size: 13px; }
-        .theo-ring-container { height: 380px; }
-        .theo-ring-card {
-          width: 190px;
-          height: 260px;
-          margin-left: -95px;
-          margin-top: -130px;
-          padding: 14px;
-          border-radius: 12px;
-        }
-        .theo-card-title { font-size: 14px; }
-        .theo-card-graphic { height: 50px; margin: 4px 0; }
-        .theo-card-metric { font-size: 11px; }
-        .theo-ring-hud { left: 12px; right: 12px; bottom: 8px; }
-        .active-pill-name { max-width: 170px; font-size: 11px; }
-        .active-pill-hint { display: none; }
-        .theo-ring-instructions { display: none; }
+      .theo-hero-right {
+        height: 480px;
       }
+      .theo-wheel-card {
+        width: 290px;
+        height: 205px;
+        margin-left: -145px;
+        margin-top: -102px;
+      }
+    }
+    @media (max-width: 768px) {
+      .theo-hud { padding: 10px 14px; }
+      .theo-hud-role, .theo-hud-loc, .theo-hud-divider { display: none; }
+      .theo-hud-nav { gap: 10px; }
+      .theo-hud-link { font-size: 11px; }
+      .theo-hud-pdf-btn { padding: 4px 8px; font-size: 10px; }
+      .theo-hud-sound-btn { padding: 4px 8px; font-size: 10px; }
+      .theo-hero-split-grid { padding: 0 16px; }
+      .theo-hero-title { font-size: 26px; }
+      .theo-hero-desc { font-size: 13px; }
+      .theo-hero-metrics-compact { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .theo-hero-right { height: 400px; }
+      .theo-wheel-card {
+        width: 240px;
+        height: 180px;
+        margin-left: -120px;
+        margin-top: -90px;
+        padding: 12px 14px;
+      }
+      .theo-card-dark-frame { height: 56px; }
+      .theo-card-title { font-size: 13px; }
+      .theo-card-metric { font-size: 10.5px; }
+    }
+
+    /* Print Optimization Rules */
+    @media print {
+      .theo-hud,
+      .theo-hero-right,
+      .theo-scroll-hint,
+      .pinned-cta,
+      #swissCanvas,
+      .site-header,
+      .client-marquee-bar,
+      .work-section,
+      .modal-backdrop,
+      .modal-close-btn,
+      .proj-cta-link,
+      .mono-link,
+      .waveform-hint,
+      .card-glare,
+      .live-clock,
+      .live-status-pill,
+      .builds-nav-btns,
+      .hero-spec-card-3d-wrap,
+      .section-flow-connector,
+      .pipeline-journey-hud {
+        display: none !important;
+      }
+      .theo-hero-section {
+        padding: 0 0 10pt 0 !important;
+        border-bottom: 1.5pt solid #111111 !important;
+        margin-bottom: 10pt !important;
+        min-height: auto !important;
+        height: auto !important;
+      }
+      .theo-hero-split-grid {
+        display: block !important;
+        padding: 0 !important;
+        min-height: auto !important;
+      }
+      .theo-hero-left {
+        max-width: 100% !important;
+      }
+      .theo-hero-title {
+        font-size: 18pt !important;
+        line-height: 1.15 !important;
+        margin-bottom: 3pt !important;
+        color: #000000 !important;
+      }
+      .theo-hero-desc {
+        font-size: 8.5pt !important;
+        line-height: 1.35 !important;
+        color: #333333 !important;
+        margin-bottom: 6pt !important;
+      }
+      .theo-pinned-project {
+        display: none !important;
+      }
+      .theo-hero-metrics-compact {
+        margin-top: 6pt !important;
+        padding-top: 6pt !important;
+        border-top: 1pt solid #ccc !important;
+      }
+      .compact-metric-val {
+        font-size: 13pt !important;
+      }
+      .compact-metric-lbl {
+        font-size: 7pt !important;
+      }
+    }
 
     </style>
 </head>
@@ -3733,59 +3850,67 @@
 
     <!-- ─── HERO SECTION (WITH PROFILE PHOTO & FLAGSHIP SHOWCASE SLOTS) ─── -->
     
-  <!-- ─── THEO NOLAN SCROLL-DRIVEN 3D PROJECT RING HERO ─── -->
+  <!-- ─── THEO NOLAN V2: SPLIT-SCREEN & VERTICAL 3D WHEEL HERO ─── -->
   <section class="theo-hero-section" id="hero">
-    <div class="theo-hero-header">
-      <div class="theo-hero-eyebrow">Product Manager · Engineering-Grade Work Archive</div>
-      <h1 class="theo-hero-title">
-        Bridging business ambiguity and engineering execution.
-      </h1>
-      <p class="theo-hero-desc">
-        국내 엔터프라이즈 고객사와 글로벌(인도) 개발팀 9명 사이에서 8개 프로젝트를 단계적으로 인수·총괄해 온 프로덕트 매니저 윤찬민입니다. 기획서·배포본·DB를 직접 대조해 누락 화면 19개를 발굴·집필하고, 레거시 45.5만 건(99.88%) 무손실 이관 및 대형 복합빌딩 5개 서피스를 실시간 운영합니다.
-      </p>
-    </div>
+    <div class="theo-hero-split-grid">
+      
+      <!-- Left Column: Narrative, Pinned Active Case, Compact Impact Metrics -->
+      <div class="theo-hero-left">
+        <div class="theo-hero-eyebrow">Product Manager · Engineering-Grade Work Archive</div>
+        <h1 class="theo-hero-title">
+          Bridging business ambiguity and engineering execution.
+        </h1>
+        <p class="theo-hero-desc">
+          국내 엔터프라이즈 고객사와 글로벌(인도) 개발팀 9명 사이에서 8개 프로젝트를 단계적으로 인수·총괄해 온 프로덕트 매니저 윤찬민입니다. 기획서·배포본·DB를 직접 대조해 누락 화면 19개를 발굴·집필하고, 레거시 45.5만 건(99.88%) 무손실 이관 및 대형 복합빌딩 5개 서피스를 실시간 운영합니다.
+        </p>
 
-    <!-- Interactive 3D Cylindrical Project Ring -->
-    <div class="theo-ring-container" id="theoRingContainer">
-      <div class="theo-ring-viewport">
-        <div class="theo-ring-stage" id="theoRingStage">
-          <!-- 3D Project Cards will be rendered dynamically by JavaScript -->
+        <!-- Pinned Active Project Indicator (Synchronized with 3D Wheel) -->
+        <div class="theo-pinned-project" id="theoPinnedProject" onclick="openActiveRingCardModal()" title="Click to view detailed case monograph">
+          <div class="pinned-slot-row">
+            <span class="pinned-slot" id="pinnedSlotNum">01 / 09</span>
+            <span class="pinned-badge badge-in-progress" id="pinnedSlotBadge">IN PROGRESS</span>
+          </div>
+          <div class="pinned-title" id="pinnedSlotTitle">대형 어학교육 플랫폼 전면 리뉴얼 (토킹클럽)</div>
+          <div class="pinned-metric" id="pinnedSlotMetric">✓ 누락 화면 19개 신규 집필 · 45.5만 건(99.88%) 무손실 이관</div>
+          <div class="pinned-cta">Click card or click here to open complete monograph ↗</div>
+        </div>
+
+        <!-- Compact 4-Metric Grid -->
+        <div class="theo-hero-metrics-compact">
+          <div class="compact-metric-item">
+            <div class="compact-metric-val">8 Projects</div>
+            <div class="compact-metric-lbl">Step-by-Step Ownership</div>
+          </div>
+          <div class="compact-metric-item">
+            <div class="compact-metric-val">99.88%</div>
+            <div class="compact-metric-lbl">Legacy Data Migrated</div>
+          </div>
+          <div class="compact-metric-item">
+            <div class="compact-metric-val">101 / 142</div>
+            <div class="compact-metric-lbl">QA Defects Resolved</div>
+          </div>
+          <div class="compact-metric-item">
+            <div class="compact-metric-val">+1 Year</div>
+            <div class="compact-metric-lbl">Contract Renewal</div>
+          </div>
+        </div>
+
+        <div class="theo-scroll-hint">
+          <span class="hint-bracket">[</span> Scroll or Drag right wheel to inspect projects <span class="hint-bracket">]</span>
         </div>
       </div>
 
-      <!-- Ring HUD Overlay Bar -->
-      <div class="theo-ring-hud">
-        <div class="theo-ring-active-pill" id="theoRingActivePill" onclick="openActiveRingCardModal()" style="cursor: pointer;">
-          <span class="active-pill-slot" id="activeSlotPill">01 / 09</span>
-          <span class="active-pill-name" id="activeSlotTitle">대형 어학교육 플랫폼 전면 리뉴얼 (토킹클럽)</span>
-          <span class="active-pill-hint">· Click to Open Monograph ↗</span>
-        </div>
-        <div class="theo-ring-instructions">
-          [ Drag or Scroll wheel to turn ring ]
+      <!-- Right Column: Vertically Rolling 3D Wheel -->
+      <div class="theo-hero-right">
+        <div class="theo-wheel-container" id="theoWheelContainer">
+          <div class="theo-wheel-viewport">
+            <div class="theo-wheel-stage" id="theoWheelStage">
+              <!-- 3D Landscape Cards dynamically rendered by JavaScript -->
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Verified Key Impact Metrics Bar -->
-    <div class="container" style="margin-top: 28px;">
-      <div class="hero-metrics-bar" style="margin-top: 0; background: #fafafa; border: 1px solid #ebebeb; border-radius: 12px;">
-        <div class="hero-metric-item">
-          <div class="hero-metric-val count-up" data-target="8" data-suffix=" Projects" data-decimals="0">8 Projects</div>
-          <div class="hero-metric-lbl">Step-by-Step Ownership<br>신규·인수 6건 · 3자 브릿지 1건 · QA지원 1건</div>
-        </div>
-        <div class="hero-metric-item">
-          <div class="hero-metric-val count-up" data-target="99.88" data-suffix="%" data-decimals="2">99.88%</div>
-          <div class="hero-metric-lbl">Legacy Data Migrated<br>레거시 455,447건 중 454,917건 무손실 이관</div>
-        </div>
-        <div class="hero-metric-item">
-          <div class="hero-metric-val count-up" data-target="101" data-suffix=" / 142" data-decimals="0">101 / 142</div>
-          <div class="hero-metric-lbl">QA Defects Resolved<br>일일 결함 트래커 운영 (71.1% 완결 추적)</div>
-        </div>
-        <div class="hero-metric-item">
-          <div class="hero-metric-val count-up" data-target="1" data-prefix="+" data-suffix=" Year" data-decimals="0">+1 Year</div>
-          <div class="hero-metric-lbl">Contract Renewal<br>복합빌딩 5개 서피스 안정 운영 및 계약 연장</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -5822,7 +5947,7 @@
     window.addEventListener("scroll", revealVisibleElements, { passive: true });
   </script>
 
-  <!-- ─── THEO NOLAN 3D RING PHYSICS & WEB AUDIO SYNTHESIZER SCRIPT ─── -->
+  <!-- ─── THEO NOLAN VERTICAL 3D WHEEL & WEB AUDIO SCRIPT ─── -->
   <script>
     (function() {
       // 1. Lenis Smooth Scroll Initialization
@@ -5861,7 +5986,7 @@
       setInterval(updateHudTime, 1000);
       updateHudTime();
 
-      // 3. Zero-Asset Tactile Web Audio Synthesizer (Reverse-Engineered from theoportfolio.framer.photos)
+      // 3. Zero-Asset Tactile Web Audio Synthesizer
       let audioCtx = null;
       let soundEnabled = false;
       const soundBtn = document.getElementById("hudSoundToggle");
@@ -5935,8 +6060,8 @@
         });
       }
 
-      // 4. 3D Cylindrical Project Ring Setup (18 Slots: 9 Projects x 2 for Seamless Loop)
-      const RING_PROJECTS = [
+      // 4. 9 Core Projects Data with High-Contrast Dark Architectural SVGs
+      const WHEEL_PROJECTS = [
         {
           caseIndex: 0,
           slot: "01",
@@ -5946,7 +6071,7 @@
           title: "대형 어학교육 플랫폼 전면 리뉴얼 (토킹클럽)",
           metric: "✓ 누락 화면 19개 신규 집필",
           submetric: "레거시 45.5만 건(99.88%) 무손실 이관",
-          svg: `<svg viewBox="0 0 100 40"><path d="M5 30 Q25 10 50 25 T95 10" fill="none" stroke="#cf1322" stroke-width="2.5"/><circle cx="50" cy="25" r="3" fill="#cf1322"/><circle cx="95" cy="10" r="3" fill="#cf1322"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><path d="M10 45 L50 20 L90 35 L140 15 L190 25 L230 10" fill="none" stroke="#ff4d4f" stroke-width="2.5"/><circle cx="50" cy="20" r="3.5" fill="#ff4d4f"/><circle cx="140" cy="15" r="3.5" fill="#ff4d4f"/><circle cx="230" cy="10" r="3.5" fill="#ff4d4f"/><text x="15" y="16" fill="#888" font-family="monospace" font-size="8">LMS BUNDLE ROUTE</text><text x="175" y="52" fill="#52c41a" font-family="monospace" font-size="8">99.88% SYNC</text></svg>`
         },
         {
           caseIndex: 1,
@@ -5957,7 +6082,7 @@
           title: "PM 업무 자동화 에이전트 조직 & 언러닝",
           metric: "✓ 40+ 규칙 · 21개 스킬 에이전트",
           submetric: "기획서-코드 실시간 정합성 게이트",
-          svg: `<svg viewBox="0 0 100 40"><rect x="15" y="8" width="20" height="24" rx="3" fill="none" stroke="#0958d9" stroke-width="2"/><rect x="45" y="8" width="20" height="24" rx="3" fill="none" stroke="#0958d9" stroke-width="2"/><rect x="75" y="8" width="18" height="24" rx="3" fill="none" stroke="#0958d9" stroke-width="2"/><path d="M35 20 L45 20 M65 20 L75 20" stroke="#0958d9" stroke-width="2"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><rect x="15" y="15" width="45" height="30" rx="4" fill="#141824" stroke="#1890ff" stroke-width="1.5"/><rect x="95" y="15" width="50" height="30" rx="4" fill="#141824" stroke="#1890ff" stroke-width="2"/><rect x="180" y="15" width="45" height="30" rx="4" fill="#141824" stroke="#52c41a" stroke-width="1.5"/><path d="M60 30 L95 30 M145 30 L180 30" stroke="#1890ff" stroke-width="2" stroke-dasharray="3,3"/><text x="37" y="34" fill="#e6f7ff" font-family="monospace" font-size="8" text-anchor="middle">SPEC</text><text x="120" y="34" fill="#1890ff" font-family="monospace" font-size="8" text-anchor="middle">GATE</text><text x="202" y="34" fill="#52c41a" font-family="monospace" font-size="8" text-anchor="middle">EXEC</text></svg>`
         },
         {
           caseIndex: 2,
@@ -5968,7 +6093,7 @@
           title: "서울 도심 대형 복합빌딩 A (센터필드)",
           metric: "✓ 5개 서피스 실시간 관제 및 장애 종결",
           submetric: "대기업 원청 · 입주사 직대응 11개월",
-          svg: `<svg viewBox="0 0 100 40"><path d="M10 35 L10 15 L30 15 L30 35 M30 20 L60 20 L60 35 M60 10 L85 10 L85 35" fill="none" stroke="#389e0d" stroke-width="2.5"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><path d="M20 50 L20 20 L50 20 L50 50 M50 28 L90 28 L90 50 M90 12 L130 12 L130 50 M130 32 L170 32 L170 50 M170 22 L210 22 L210 50" fill="none" stroke="#52c41a" stroke-width="2"/><circle cx="90" cy="12" r="3" fill="#52c41a"/><text x="25" y="14" fill="#888" font-family="monospace" font-size="8">5 SURFACES ACTIVE</text></svg>`
         },
         {
           caseIndex: 3,
@@ -5979,7 +6104,7 @@
           title: "대형 통신사 AI B2B (A.dot biz) 브릿지 PM",
           metric: "✓ 3자간 인터페이스 정합성 명세 확정",
           submetric: "API 명세 분쟁 차단 및 브릿지 리딩",
-          svg: `<svg viewBox="0 0 100 40"><circle cx="25" cy="20" r="10" fill="none" stroke="#595959" stroke-width="2"/><circle cx="75" cy="20" r="10" fill="none" stroke="#595959" stroke-width="2"/><path d="M35 20 L65 20" stroke="#595959" stroke-width="2" stroke-dasharray="3,3"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><circle cx="40" cy="30" r="14" fill="#161922" stroke="#8c8c8c" stroke-width="1.5"/><circle cx="120" cy="30" r="16" fill="#161922" stroke="#ffa940" stroke-width="2"/><circle cx="200" cy="30" r="14" fill="#161922" stroke="#8c8c8c" stroke-width="1.5"/><path d="M54 30 L104 30 M136 30 L186 30" stroke="#ffa940" stroke-width="1.5" stroke-dasharray="2,2"/><text x="40" y="33" fill="#aaa" font-family="monospace" font-size="7" text-anchor="middle">CLIENT</text><text x="120" y="33" fill="#ffa940" font-family="monospace" font-size="8" text-anchor="middle">BRIDGE</text><text x="200" y="33" fill="#aaa" font-family="monospace" font-size="7" text-anchor="middle">CORP</text></svg>`
         },
         {
           caseIndex: 4,
@@ -5990,7 +6115,7 @@
           title: "시니어 돌봄 앱 (송연돌봄) Google Play 런칭",
           metric: "✓ Google 3회 반려 원인 분석 및 해결",
           submetric: "권한 모델 재설계 및 정식 런칭 완료",
-          svg: `<svg viewBox="0 0 100 40"><rect x="35" y="6" width="30" height="28" rx="5" fill="none" stroke="#595959" stroke-width="2"/><circle cx="50" cy="30" r="1.5" fill="#595959"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><rect x="90" y="10" width="60" height="40" rx="6" fill="#151924" stroke="#722ed1" stroke-width="1.8"/><circle cx="120" cy="43" r="2.5" fill="#722ed1"/><path d="M100 20 L140 20 M100 26 L130 26" stroke="#555" stroke-width="1.5"/><text x="15" y="34" fill="#ff4d4f" font-family="monospace" font-size="8">3x REJECTED</text><text x="165" y="34" fill="#52c41a" font-family="monospace" font-size="8">→ APPROVED</text></svg>`
         },
         {
           caseIndex: 5,
@@ -6001,7 +6126,7 @@
           title: "글로벌 화장품 PIM 정합성 게이트 & 정산",
           metric: "✓ 사전 정합성 룰 32종 및 MD 3분할 정산",
           submetric: "오더·정산 오류 0건 무결점 납품",
-          svg: `<svg viewBox="0 0 100 40"><path d="M15 10 L85 10 L85 30 L15 30 Z" fill="none" stroke="#595959" stroke-width="2"/><path d="M15 18 L85 18 M40 10 L40 30 M65 10 L65 30" stroke="#595959" stroke-width="1.5"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><rect x="25" y="15" width="190" height="30" rx="3" fill="#141822" stroke="#13c2c2" stroke-width="1.5"/><path d="M25 25 L215 25 M85 15 L85 45 M150 15 L150 45" stroke="#13c2c2" stroke-width="1"/><text x="55" y="38" fill="#aaa" font-family="monospace" font-size="8" text-anchor="middle">MD A</text><text x="117" y="38" fill="#13c2c2" font-family="monospace" font-size="8" text-anchor="middle">MD B (33%)</text><text x="182" y="38" fill="#aaa" font-family="monospace" font-size="8" text-anchor="middle">MD C</text></svg>`
         },
         {
           caseIndex: 6,
@@ -6012,7 +6137,7 @@
           title: "사내 솔루션 (Exitmaker) 단기 스프린트 런칭",
           metric: "✓ 2개월 단기 스프린트 기획 및 런칭",
           submetric: "핵심 경로 와이어프레임 v2 최종 승인",
-          svg: `<svg viewBox="0 0 100 40"><path d="M20 30 L50 10 L80 30" fill="none" stroke="#595959" stroke-width="2.5"/><path d="M50 10 L50 32" stroke="#595959" stroke-width="2"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><path d="M25 45 L65 15 L120 35 L175 15 L215 45" fill="none" stroke="#faad14" stroke-width="2"/><circle cx="175" cy="15" r="3.5" fill="#faad14"/><text x="30" y="20" fill="#888" font-family="monospace" font-size="8">2-MONTH SPRINT</text><text x="160" y="52" fill="#faad14" font-family="monospace" font-size="8">MVP LAUNCH</text></svg>`
         },
         {
           caseIndex: 7,
@@ -6023,7 +6148,7 @@
           title: "팬덤 커머스 (래딕스) 무명세 레거시 역기획 QA",
           metric: "✓ 무명세 레거시 107개 화면 역추적 QA",
           submetric: "결제 결함 14건 현업 직접 조치",
-          svg: `<svg viewBox="0 0 100 40"><path d="M20 12 L80 12 M20 20 L60 20 M20 28 L75 28" stroke="#595959" stroke-width="2.5" stroke-linecap="round"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><path d="M30 18 L210 18 M30 30 L160 30 M30 42 L185 42" stroke="#eb2f96" stroke-width="2" stroke-linecap="round"/><circle cx="160" cy="30" r="3" fill="#eb2f96"/><text x="175" y="33" fill="#eb2f96" font-family="monospace" font-size="8">107 SCREENS</text></svg>`
         },
         {
           caseIndex: 8,
@@ -6034,24 +6159,26 @@
           title: "서울 도심 대형 복합빌딩 B (그랑서울)",
           metric: "✓ D-2 긴급 키오스크 반영 및 계약 1년 연장",
           submetric: "로비 DID 키오스크 100% 무중단 유지",
-          svg: `<svg viewBox="0 0 100 40"><rect x="25" y="8" width="50" height="24" rx="2" fill="none" stroke="#389e0d" stroke-width="2"/><path d="M40 32 L60 32" stroke="#389e0d" stroke-width="3"/></svg>`
+          svg: `<svg viewBox="0 0 240 60"><rect x="40" y="12" width="70" height="36" rx="4" fill="#141924" stroke="#52c41a" stroke-width="1.8"/><rect x="130" y="12" width="70" height="36" rx="4" fill="#141924" stroke="#52c41a" stroke-width="1.8"/><text x="75" y="33" fill="#52c41a" font-family="monospace" font-size="8" text-anchor="middle">LOBBY DID</text><text x="165" y="33" fill="#52c41a" font-family="monospace" font-size="8" text-anchor="middle">KIOSK +1YR</text></svg>`
         }
       ];
 
       // Double to 18 slots for seamless loop
       const SLOTS_COUNT = 18;
-      const ringStage = document.getElementById("theoRingStage");
-      const ringContainer = document.getElementById("theoRingContainer");
-      const activeSlotPill = document.getElementById("activeSlotPill");
-      const activeSlotTitle = document.getElementById("activeSlotTitle");
+      const wheelStage = document.getElementById("theoWheelStage");
+      const wheelContainer = document.getElementById("theoWheelContainer");
+      const pinnedSlotNum = document.getElementById("pinnedSlotNum");
+      const pinnedSlotBadge = document.getElementById("pinnedSlotBadge");
+      const pinnedSlotTitle = document.getElementById("pinnedSlotTitle");
+      const pinnedSlotMetric = document.getElementById("pinnedSlotMetric");
 
-      if (!ringStage || !ringContainer) return;
+      if (!wheelStage || !wheelContainer) return;
 
       // Populate Card DOM Elements
       for (let i = 0; i < SLOTS_COUNT; i++) {
-        const p = RING_PROJECTS[i % RING_PROJECTS.length];
+        const p = WHEEL_PROJECTS[i % WHEEL_PROJECTS.length];
         const card = document.createElement("div");
-        card.className = "theo-ring-card";
+        card.className = "theo-wheel-card";
         card.dataset.slotIndex = i;
         card.dataset.caseIndex = p.caseIndex;
 
@@ -6064,7 +6191,7 @@
             <div class="theo-card-category">${p.category}</div>
             <div class="theo-card-title">${p.title}</div>
           </div>
-          <div class="theo-card-graphic">${p.svg}</div>
+          <div class="theo-card-dark-frame">${p.svg}</div>
           <div class="theo-card-bottom">
             <div class="theo-card-metric">${p.metric}</div>
             <div class="theo-card-submetric">${p.submetric}</div>
@@ -6081,55 +6208,70 @@
           }
         });
 
-        ringStage.appendChild(card);
+        wheelStage.appendChild(card);
       }
 
       window.openActiveRingCardModal = function() {
-        const activeIdx = (Math.round(currentRotation) % RING_PROJECTS.length + RING_PROJECTS.length) % RING_PROJECTS.length;
+        const activeIdx = (Math.round(currentRotation) % WHEEL_PROJECTS.length + WHEEL_PROJECTS.length) % WHEEL_PROJECTS.length;
         if (typeof openCaseModal === "function") {
           openCaseModal(activeIdx);
         }
       };
 
-      // Mathematical Ring Calculations
+      // ─── THEO NOLAN VERTICAL 3D WHEEL MATHEMATICS ───
       let currentRotation = 0;
       let targetRotation = 0;
       let isDragging = false;
-      let startX = 0;
+      let startY = 0;
       let lastSlotTick = 0;
 
-      function updateRingTransform() {
-        const cards = ringStage.children;
-        const width = ringContainer.clientWidth || 1200;
+      function updateWheelTransform() {
+        const cards = wheelStage.children;
+        const width = wheelContainer.clientWidth || 700;
+        const height = wheelContainer.clientHeight || 600;
         const isMobile = width < 768;
-        const radiusX = isMobile ? Math.min(260, width * 0.65) : Math.min(640, width * 0.46);
-        const radiusZ = radiusX * (isMobile ? 0.75 : 0.62); // Perspective depth compression
+
+        // Radius along vertical cylinder arc (generous breathing room)
+        const radiusY = isMobile ? Math.min(240, height * 0.45) : Math.min(460, height * 0.72);
+        const radiusZ = radiusY * (isMobile ? 0.75 : 0.88); // Depth curve
 
         for (let i = 0; i < cards.length; i++) {
           const card = cards[i];
-          const r = (i - currentRotation) / SLOTS_COUNT * (2 * Math.PI) - Math.PI / 2;
-          const x = Math.cos(r) * radiusX;
-          const z = Math.sin(r) * radiusZ;
-          const cardAngleY = -((r + Math.PI / 2) * 180 / Math.PI);
+          // Phase-aligned angle: theta = 0 when card is directly in center
+          const theta = (i - currentRotation) / SLOTS_COUNT * (2 * Math.PI);
+          
+          const y = -Math.sin(theta) * radiusY;
+          const z = Math.cos(theta) * radiusZ;
+          // Slight diagonal perspective yaw (inspired by Theo's rotateY + rotateX tilt)
+          const x = (Math.cos(theta) * radiusY * 0.12);
 
-          // Backface Opacity & Culling Curve (sharper falloff on mobile to focus on front card)
-          const threshold = isMobile ? 0.05 : 0.15;
-          const spread = isMobile ? 0.35 : 0.5;
-          const m = Math.min(1, Math.max(0, (Math.cos(r) + threshold) / spread));
+          // Subtle vertical drum tilt (0deg at center, +/-24deg when rolling up/down)
+          const rotX = isMobile ? (-Math.sin(theta) * 16) : (-Math.sin(theta) * 24);
+          const rotY = isMobile ? 0 : -8; // subtle angle facing left narrative
+          const rotZ = isMobile ? 0 : -1.5;
+
+          // Scale focal boost for front-most card
+          const focalScale = 0.90 + 0.14 * Math.max(0, Math.cos(theta));
+
+          // Exact 3-Card Viewport Window: 1 center card + 1 top + 1 bottom visible, rest cull to 0
+          const m = Math.min(1, Math.max(0, (Math.cos(theta) - 0.72) / 0.28));
           const opacity = Math.max(0, m);
 
-          card.style.transform = `translate3d(${x.toFixed(1)}px, 0px, ${z.toFixed(1)}px) rotateY(${cardAngleY.toFixed(1)}deg)`;
+          card.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotateX(${rotX.toFixed(1)}deg) rotateY(${rotY.toFixed(1)}deg) rotateZ(${rotZ.toFixed(1)}deg) scale(${focalScale.toFixed(3)})`;
           card.style.zIndex = Math.round(1000 + z);
           card.style.opacity = opacity.toFixed(3);
-          card.style.pointerEvents = m > 0.15 ? "auto" : "none";
+          card.style.pointerEvents = m > 0.6 ? "auto" : "none";
         }
 
-        // Active Card Index & Text Update
-        const activeNormalized = (Math.round(currentRotation) % RING_PROJECTS.length + RING_PROJECTS.length) % RING_PROJECTS.length;
-        const activeProj = RING_PROJECTS[activeNormalized];
-        if (activeSlotPill && activeProj) {
-          activeSlotPill.textContent = `${activeProj.slot} / 09`;
-          activeSlotTitle.textContent = activeProj.title;
+        // Active Card Index & Pinned Left HUD Update
+        const activeNormalized = (Math.round(currentRotation) % WHEEL_PROJECTS.length + WHEEL_PROJECTS.length) % WHEEL_PROJECTS.length;
+        const activeProj = WHEEL_PROJECTS[activeNormalized];
+        if (pinnedSlotTitle && activeProj) {
+          pinnedSlotNum.textContent = `${activeProj.slot} / 09`;
+          pinnedSlotBadge.textContent = activeProj.badge;
+          pinnedSlotBadge.className = `pinned-badge ${activeProj.badgeClass}`;
+          pinnedSlotTitle.textContent = activeProj.title;
+          pinnedSlotMetric.textContent = `${activeProj.metric} · ${activeProj.submetric}`;
         }
 
         // Audio Trigger on Slot Boundary Cross
@@ -6142,25 +6284,25 @@
 
       // Animation Physics Loop (Exponential Spring Smoothing: Math.exp(-dt * 12))
       let lastTime = performance.now();
-      function animateRing(time) {
+      function animateWheel(time) {
         const dt = (time - lastTime) / 1000;
         lastTime = time;
 
-        // Subtle automatic drift when idle
+        // Subtle automatic upward drift when idle
         if (!isDragging) {
-          targetRotation += 0.08 * dt;
+          targetRotation += 0.09 * dt;
         }
 
         currentRotation += (targetRotation - currentRotation) * (1 - Math.exp(-dt * 12));
-        updateRingTransform();
-        requestAnimationFrame(animateRing);
+        updateWheelTransform();
+        requestAnimationFrame(animateWheel);
       }
-      requestAnimationFrame(animateRing);
+      requestAnimationFrame(animateWheel);
 
-      // Drag Interaction
-      ringContainer.addEventListener("mousedown", function(e) {
+      // Drag Interaction (Vertical drag rotates the wheel)
+      wheelContainer.addEventListener("mousedown", function(e) {
         isDragging = true;
-        startX = e.clientX;
+        startY = e.clientY;
         initAudio();
       });
       window.addEventListener("mouseup", function() {
@@ -6168,15 +6310,15 @@
       });
       window.addEventListener("mousemove", function(e) {
         if (!isDragging) return;
-        const dx = e.clientX - startX;
-        startX = e.clientX;
-        targetRotation += dx * 0.012;
+        const dy = e.clientY - startY;
+        startY = e.clientY;
+        targetRotation += dy * 0.015;
       });
 
       // Touch Interaction
-      ringContainer.addEventListener("touchstart", function(e) {
+      wheelContainer.addEventListener("touchstart", function(e) {
         isDragging = true;
-        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
         initAudio();
       }, { passive: true });
       window.addEventListener("touchend", function() {
@@ -6184,20 +6326,20 @@
       });
       window.addEventListener("touchmove", function(e) {
         if (!isDragging) return;
-        const dx = e.touches[0].clientX - startX;
-        startX = e.touches[0].clientX;
-        targetRotation += dx * 0.014;
+        const dy = e.touches[0].clientY - startY;
+        startY = e.touches[0].clientY;
+        targetRotation += dy * 0.016;
       }, { passive: true });
 
-      // Scroll-Turn Interaction
-      ringContainer.addEventListener("wheel", function(e) {
+      // Scroll Wheel Interaction
+      wheelContainer.addEventListener("wheel", function(e) {
         e.preventDefault();
         initAudio();
         targetRotation += e.deltaY * 0.0035;
       }, { passive: false });
 
       // Initial Update
-      updateRingTransform();
+      updateWheelTransform();
     })();
   </script>
 
